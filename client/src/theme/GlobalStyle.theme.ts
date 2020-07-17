@@ -72,7 +72,7 @@ export const GlobalStyle = createGlobalStyle`
     font-family: inherit;
   }
 
-  #root {
+  #__next {
     min-height: 100vh;
     position: relative;
   }

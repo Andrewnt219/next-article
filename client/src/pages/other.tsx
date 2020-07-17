@@ -5,7 +5,6 @@ import { wrapper } from '../app/store';
 
 import { add, asyncCount, countSelector } from '../features/countSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import Link from 'next/link';
 
 const Home = () => {
   const count = useSelector(countSelector);
@@ -14,12 +13,7 @@ const Home = () => {
     <Container>
       <Head>
         <title key="title">Other Page</title>
-        <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <Link href="/">
-        <a>Home</a>
-      </Link>
 
       <StyledButton color="secondary">{count}</StyledButton>
       <StyledButton

@@ -11,6 +11,8 @@ import Router from 'next/router';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
 import { GlobalStyle } from '../theme/GlobalStyle.theme';
+import AppBar from '../components/navigation/AppBar';
+import { MainLayout } from '../components/layout/MainLayout';
 
 NProgress.configure({ showSpinner: false });
 
@@ -36,7 +38,9 @@ function App({ Component, pageProps }: AppProps) {
       <MuiProvider theme={defaultTheme}>
         <ScProvider theme={defaultTheme}>
           <GlobalStyle />
-          <Component {...pageProps} />
+          <MainLayout>
+            <Component {...pageProps} />
+          </MainLayout>
         </ScProvider>
       </MuiProvider>
     </StylesProvider>

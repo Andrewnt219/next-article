@@ -5,22 +5,15 @@ import { wrapper } from '../app/store';
 
 import { add, countSelector } from '../features/countSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import Link from 'next/link';
 
 const Home = () => {
   const count = useSelector(countSelector);
   const dispatch = useDispatch();
   return (
-    <Container>
+    <Page>
       <Head>
-        <title key="title">Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title key="title">Welcome to Dooee</title>
       </Head>
-
-      <Link href="/other">
-        <a>Other</a>
-      </Link>
-      <div>test</div>
 
       <StyledButton color="secondary">{count}</StyledButton>
       <StyledButton
@@ -29,7 +22,7 @@ const Home = () => {
       >
         +1
       </StyledButton>
-    </Container>
+    </Page>
   );
 };
 
@@ -40,12 +33,7 @@ export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
   };
 });
 
-const Container = styled.div`
-  width: 960px;
-  height: 100vh;
-  margin: 2rem auto;
-  padding: 2rem;
-`;
+const Page = styled.div``;
 
 const StyledButton = styled(Button)`
   text-transform: lowercase;
