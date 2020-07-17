@@ -1,5 +1,5 @@
-import React, { ReactElement } from 'react';
-import styled from 'styled-components';
+import React, { ReactElement } from "react";
+import styled from "styled-components";
 
 type Props = {
   height: string;
@@ -11,7 +11,7 @@ function Footer({ height }: Props): ReactElement {
 
 type ContainerProps = {};
 const Container = styled.footer<ContainerProps>`
-  background: #000;
+  background: ${(p) => p.theme.palette.grey["50"]};
   position: absolute;
   width: 100%;
   bottom: 0;
