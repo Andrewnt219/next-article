@@ -5,12 +5,13 @@ import { wrapper } from "../app/store";
 
 import { add, asyncCount, countSelector } from "../features/countSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { MainLayout } from "../components/layout/MainLayout";
 
 const Home = () => {
   const count = useSelector(countSelector);
   const dispatch = useDispatch();
   return (
-    <>
+    <MainLayout pageTitle="All Courses">
       <Head>
         <title key="title">Discover Courses | Dooee</title>
       </Head>
@@ -25,7 +26,7 @@ const Home = () => {
       <StyledButton color="primary" onClick={() => dispatch(asyncCount(1))}>
         +1 async
       </StyledButton>
-    </>
+    </MainLayout>
   );
 };
 

@@ -5,12 +5,13 @@ import { wrapper } from "../app/store";
 
 import { add, countSelector } from "../features/countSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { MainLayout } from "../components/layout/MainLayout";
 
 const Home = () => {
   const count = useSelector(countSelector);
   const dispatch = useDispatch();
   return (
-    <>
+    <MainLayout pageTitle="Homepage">
       <Head>
         <title key="title">Welcome to Dooee</title>
       </Head>
@@ -22,7 +23,7 @@ const Home = () => {
       >
         +1
       </StyledButton>
-    </>
+    </MainLayout>
   );
 };
 

@@ -51,8 +51,8 @@ export const allRoutes: Route[] = [
     text: "Dashboard",
   },
   {
-    href: "/your-courses",
-    text: "Your Courses",
+    href: "/courses",
+    text: "Courses",
   },
   {
     href: "/how-it-works",
