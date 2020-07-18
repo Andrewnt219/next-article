@@ -1,13 +1,12 @@
 import styled from "styled-components";
 import Head from "next/head";
 import Button from "@material-ui/core/Button";
-import { wrapper } from "../app/store";
 
 import { add, asyncCount, countSelector } from "../features/countSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { MainLayout } from "../components/layout/MainLayout";
 
-const Home = () => {
+const HowItWorks = () => {
   const count = useSelector(countSelector);
   const dispatch = useDispatch();
   return (
@@ -30,16 +29,16 @@ const Home = () => {
   );
 };
 
-export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
-  store.dispatch(add({ amount: 200 }));
-  // store.dispatch(asyncCount(200));
-  return {
-    props: {},
-  };
-});
+// export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
+//   store.dispatch(add({ amount: 200 }));
+//   // store.dispatch(asyncCount(200));
+//   return {
+//     props: {},
+//   };
+// });
 
 const StyledButton = styled(Button)`
   text-transform: lowercase;
 `;
 
-export default Home;
+export default HowItWorks;

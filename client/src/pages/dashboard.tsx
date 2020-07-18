@@ -7,7 +7,7 @@ import { add, asyncCount, countSelector } from "../features/countSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { MainLayout } from "../components/layout/MainLayout";
 
-const Home = () => {
+const Dashboard = () => {
   const count = useSelector(countSelector);
   const dispatch = useDispatch();
   return (
@@ -42,4 +42,4 @@ const StyledButton = styled(Button)`
   text-transform: lowercase;
 `;
 
-export default Home;
+export default Dashboard;

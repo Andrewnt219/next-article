@@ -9,6 +9,7 @@ import { Logo } from "../ui/Logo";
 import Hidden from "@material-ui/core/Hidden";
 
 import { DesktopNavItems } from "./DesktopNavItems";
+import { SearchBar } from "../ui/SearchBar";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -33,9 +34,6 @@ const useStyles = makeStyles((theme: Theme) =>
       top: "50%",
       left: "4rem",
       transform: "translate(-50%, -50%)",
-      [theme.breakpoints.up("md")]: {
-        display: "none",
-      },
     },
   })
 );
@@ -55,20 +53,26 @@ export default function AppBar({
       <ElevationScroll>
         <MuiAppBar position="fixed" className={classes.appbar}>
           <Toolbar style={{ height }} className={classes.toolbar}>
-            <IconButton
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              className={classes.menuIcon}
-              onClick={handleDrawerToggle}
-            >
-              <MenuIcon color="primary" fontSize="large" />
-            </IconButton>
+            <Hidden mdUp implementation="css">
+              <IconButton
+                edge="start"
+                color="inherit"
+                aria-label="menu"
+                className={classes.menuIcon}
+                onClick={handleDrawerToggle}
+              >
+                <MenuIcon color="primary" fontSize="large" />
+              </IconButton>
+            </Hidden>
 
             <Logo height="1.5rem" />
 
-            <Hidden mdDown implementation="css">
+            <Hidden smDown implementation="css">
               <DesktopNavItems />
+            </Hidden>
+
+            <Hidden smDown implementation="css">
+              <SearchBar />
             </Hidden>
           </Toolbar>
         </MuiAppBar>
