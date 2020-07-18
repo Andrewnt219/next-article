@@ -21,13 +21,14 @@ type ContainerProps = {
 };
 const Container = styled.span<ContainerProps>`
   display: inline-block;
+
   background-color: #fff;
-  width: 2.5em;
-  height: 2.5em;
+  width: 1.5em;
+  height: 1.5em;
   border-radius: ${(p) => p.theme.shape.borderRadius}px;
-  box-shadow: ${(p) => p.theme.shadows[1]};
 
   position: relative;
+  overflow: hidden;
 
   svg {
     fill: ${(p) => p.fillColor};

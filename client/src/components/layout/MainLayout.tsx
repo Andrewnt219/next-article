@@ -1,14 +1,14 @@
-import React, { ReactElement, ReactNode } from 'react';
-import styled from 'styled-components';
-import AppBar from '../navigation/AppBar';
-import { Footer } from './Footer';
+import React, { ReactElement, ReactNode } from "react";
+import styled from "styled-components";
+import AppBar from "../navigation/AppBar";
+import { Footer } from "./footer/Footer";
 
 type Props = {
   children: ReactNode;
 };
 
-const APPBAR_HEIGHT = '5rem';
-const FOOTER_HEIGHT = '20rem';
+const APPBAR_HEIGHT = "5rem";
+const FOOTER_HEIGHT = "15rem";
 
 function MainLayout({ children }: Props): ReactElement {
   return (
