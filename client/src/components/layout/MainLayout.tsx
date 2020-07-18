@@ -2,8 +2,8 @@ import React, { ReactElement, ReactNode } from "react";
 import styled from "styled-components";
 import AppBar from "../navigation/AppBar";
 import { Footer } from "./footer/Footer";
-import ResponsiveDrawer from "../navigation/Drawer";
-import Head from "next/head";
+import Drawer from "../navigation/Drawer";
+
 type Props = {
   children: ReactNode;
   pageTitle: string;
@@ -28,10 +28,11 @@ function MainLayout({ children, pageTitle }: Props): ReactElement {
         {children}
       </Main>
       <Footer height={FOOTER_HEIGHT} />
-      <ResponsiveDrawer
+      <Drawer
         mobileOpen={mobileOpen}
         handleDrawerToggle={handleDrawerToggle}
         drawerWidth={DRAWER_WIDTH}
+        paddingTop={APPBAR_HEIGHT}
       />
     </>
   );
@@ -44,6 +45,8 @@ const Main = styled.main<MainProps>`
 `;
 
 type PageTitleProps = {};
-const PageTitle = styled.h1<PageTitleProps>``;
+const PageTitle = styled.h1<PageTitleProps>`
+  text-transform: uppercase;
+`;
 
 export { MainLayout };

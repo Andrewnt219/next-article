@@ -1,7 +1,6 @@
-import Link from "@material-ui/core/Link";
-import NextLink from "next/link";
 import React, { ReactElement } from "react";
 import styled from "styled-components";
+import { Link } from "./Link";
 import NavLink from "./NavLink";
 
 type Props = {
@@ -9,9 +8,7 @@ type Props = {
   className?: string;
 };
 
-function NavigationItems({ className, isNavLink }: Props): ReactElement {
-  let Anchor = isNavLink ? NavLink : Link;
-
+function RouteItems({ className, isNavLink }: Props): ReactElement {
   return (
     <Container className={className}>{renderAllRoutes(isNavLink)}</Container>
   );
@@ -27,9 +24,9 @@ export function renderAllRoutes(isNavLink?: Props["isNavLink"]) {
   }
 
   return allRoutes.map(({ text, href }) => (
-    <NextLink key={href} href={href}>
-      <Link>{text}</Link>
-    </NextLink>
+    <Link key={href} href={href}>
+      {text}
+    </Link>
   ));
 }
 
@@ -60,4 +57,4 @@ export const allRoutes: Route[] = [
   },
 ];
 
-export { NavigationItems };
+export { RouteItems as NavigationItems };

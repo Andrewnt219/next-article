@@ -4,10 +4,11 @@ import MuiAppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
-import styled from "styled-components";
 import { ElevationScroll } from "../../helpers/material-ui.helpers";
 import { Logo } from "../ui/Logo";
 import Hidden from "@material-ui/core/Hidden";
+
+import { DesktopNavItems } from "./DesktopNavItems";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -18,15 +19,23 @@ const useStyles = makeStyles((theme: Theme) =>
     toolbar: {
       display: "flex",
       justifyContent: "center",
+      [theme.breakpoints.up("md")]: {
+        justifyContent: "flex-start",
+      },
     },
     appbar: {
       background: theme.palette.common.white,
+      // for NProgress
+      marginTop: 2,
     },
     menuIcon: {
       position: "absolute",
       top: "50%",
       left: "4rem",
       transform: "translate(-50%, -50%)",
+      [theme.breakpoints.up("md")]: {
+        display: "none",
+      },
     },
   })
 );
@@ -42,7 +51,7 @@ export default function AppBar({
 }: AppBarProps): ReactElement {
   const classes = useStyles();
   return (
-    <Hidden mdUp>
+    <>
       <ElevationScroll>
         <MuiAppBar position="fixed" className={classes.appbar}>
           <Toolbar style={{ height }} className={classes.toolbar}>
@@ -57,9 +66,13 @@ export default function AppBar({
             </IconButton>
 
             <Logo height="1.5rem" />
+
+            <Hidden mdDown implementation="css">
+              <DesktopNavItems />
+            </Hidden>
           </Toolbar>
         </MuiAppBar>
       </ElevationScroll>
-    </Hidden>
+    </>
   );
 }

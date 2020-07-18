@@ -1,6 +1,6 @@
 import React from "react";
 import Divider from "@material-ui/core/Divider";
-import Drawer from "@material-ui/core/Drawer";
+import MuiDrawer from "@material-ui/core/Drawer";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
@@ -13,28 +13,27 @@ import {
   createStyles,
 } from "@material-ui/core/styles";
 import { Logo } from "../ui/Logo";
-import { allRoutes } from "./NavigationItems";
+import { allRoutes } from "./RouteItems";
 import NavLink from "./NavLink";
 
 type StyleProps = {
   drawerWidth: number;
+  paddingTop: string;
 };
 
-type ClassKeys = "root" | "toolbar" | "drawerPaper";
-
 const useStyles = makeStyles((theme: Theme) =>
-  createStyles<ClassKeys, StyleProps>({
+  createStyles({
     root: {
       display: "flex",
     },
     // necessary for content to be below app bar
-    toolbar: {
-      ...theme.mixins.toolbar,
+    toolbar: (p: StyleProps) => ({
+      minHeight: p.paddingTop,
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
-    },
-    drawerPaper: (p) => ({
+    }),
+    drawerPaper: (p: StyleProps) => ({
       width: p.drawerWidth,
     }),
   })
@@ -45,7 +44,7 @@ type Props = StyleProps & {
   handleDrawerToggle(): void;
 };
 
-export default function ResponsiveDrawer({
+export default function Drawer({
   mobileOpen,
   handleDrawerToggle,
   ...styleProps
@@ -79,7 +78,7 @@ export default function ResponsiveDrawer({
   return (
     <div className={classes.root}>
       <nav aria-label="navigation links">
-        <Drawer
+        <MuiDrawer
           variant="temporary"
           anchor={theme.direction === "rtl" ? "right" : "left"}
           open={mobileOpen}
@@ -92,7 +91,7 @@ export default function ResponsiveDrawer({
           }}
         >
           {drawerContent}
-        </Drawer>
+        </MuiDrawer>
       </nav>
     </div>
   );

@@ -1,9 +1,6 @@
 import React, { ReactElement } from "react";
 import styled from "styled-components";
-import {
-  NavigationItems,
-  renderAllRoutes,
-} from "../../navigation/NavigationItems";
+import { NavigationItems, renderAllRoutes } from "../../navigation/RouteItems";
 
 type Props = {};
 

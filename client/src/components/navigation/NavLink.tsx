@@ -1,24 +1,39 @@
-import { useRouter } from 'next/router';
-import NextLink, { LinkProps } from 'next/link';
-import MuiLink from '@material-ui/core/Link';
-import { ReactElement, ReactNode } from 'react';
+import { useRouter } from "next/router";
+import NextLink, { LinkProps } from "next/link";
+import MuiLink from "@material-ui/core/Link";
+import { ReactElement, ReactNode } from "react";
+import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 
-type ActiveLinkProps = LinkProps & {
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    link: {
+      color: "#000",
+      cursor: "pointer",
+    },
+  })
+);
+
+export type NavLinkProps = LinkProps & {
   children: ReactNode;
+  activeStyle?: Record<string, string | number>;
 };
 
-function NavLink({ children, ...linkProps }: ActiveLinkProps): ReactElement {
+function NavLink({
+  children,
+  activeStyle,
+  ...linkProps
+}: NavLinkProps): ReactElement {
   const router = useRouter();
-
-  const style = {
-    marginRight: 10,
-    color: router.asPath === (linkProps.as ?? linkProps.href) ? 'red' : 'black',
-  };
+  const classes = useStyles(activeStyle);
+  const isActive = router.asPath === (linkProps.as ?? linkProps.href);
 
   return (
     <NextLink {...linkProps}>
-      <MuiLink style={style}>{children}</MuiLink>
+      <MuiLink style={isActive ? activeStyle : {}} className={classes.link}>
+        {children}
+      </MuiLink>
     </NextLink>
   );
 }
+
 export default NavLink;
