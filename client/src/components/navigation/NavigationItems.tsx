@@ -41,7 +41,7 @@ type Route = {
   text: string;
 };
 
-const allRoutes: Route[] = [
+export const allRoutes: Route[] = [
   {
     href: "/",
     text: "Home",

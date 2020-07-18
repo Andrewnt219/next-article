@@ -10,9 +10,9 @@ const Home = () => {
   const count = useSelector(countSelector);
   const dispatch = useDispatch();
   return (
-    <Container>
+    <>
       <Head>
-        <title key="title">Other Page</title>
+        <title key="title">How it works | Dooee</title>
       </Head>
 
       <StyledButton color="secondary">{count}</StyledButton>
@@ -25,7 +25,7 @@ const Home = () => {
       <StyledButton color="primary" onClick={() => dispatch(asyncCount(1))}>
         +1 async
       </StyledButton>
-    </Container>
+    </>
   );
 };
 
@@ -36,13 +36,6 @@ export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
     props: {},
   };
 });
-
-const Container = styled.div`
-  width: 960px;
-  height: 100vh;
-  margin: 2rem auto;
-  padding: 2rem;
-`;
 
 const StyledButton = styled(Button)`
   text-transform: lowercase;
