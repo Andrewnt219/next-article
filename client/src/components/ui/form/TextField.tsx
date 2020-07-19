@@ -4,9 +4,10 @@ import styled from "styled-components";
 
 type Props<FormValues> = InputProps &
   InputHTMLAttributes<HTMLInputElement> & {
-    label: string;
     register: (ref: (FieldElement<FormValues> & Ref) | null) => void;
     name: keyof FormValues;
+    label: string;
+    id: string;
   };
 
 function TextField<FormValues>({
@@ -32,6 +33,11 @@ function TextField<FormValues>({
 type ContainerProps = {};
 const Container = styled.div<ContainerProps>`
   position: relative;
+  border-radius: ${(p) => p.theme.shape.borderRadius}px;
+  border: 1px solid black;
+
+  /* Smoothen the corners */
+  padding: 0px 1px;
 `;
 
 type InputProps = {
@@ -41,12 +47,14 @@ const Input = styled.input<InputProps>`
   /* Side padding = custom padding + label's side padding */
   padding: 1rem 1.25rem;
   width: 100%;
+  border: none;
 
   :not(:placeholder-shown) + label {
     /* Background must match the surrounding background */
     background: ${(p) => p.labelBackgroundColor ?? "#fff"};
     transform: translate(0, -50%);
     opacity: 1;
+    color: ${(p) => p.theme.palette.primary.main};
   }
 `;
 

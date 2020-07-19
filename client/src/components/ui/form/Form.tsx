@@ -10,6 +10,10 @@ function Form({ children, ...formProps }: Props): ReactElement {
 }
 
 type StyledFormProps = {};
-const StyledForm = styled.form<StyledFormProps>``;
+const StyledForm = styled.form<StyledFormProps>`
+  & > *:not(:last-child) {
+    margin-bottom: 2rem;
+  }
+`;
 
 export { Form };
