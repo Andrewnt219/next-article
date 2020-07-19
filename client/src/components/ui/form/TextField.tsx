@@ -48,6 +48,7 @@ const Container = styled.div<ContainerProps>`
   position: relative;
   border-radius: ${(p) => p.theme.shape.borderRadius}px;
   border: 1px solid black;
+  width: 100%;
 
   /* Smoothen the corners */
   padding: 0px 1px;
@@ -85,6 +86,7 @@ const Label = styled.label<LabelProps>`
   transition: all 200ms ease;
 
   padding: 0 0.25rem;
+
   &&& {
     color: ${(p) => p.hasError && p.theme.palette.error.main};
   }

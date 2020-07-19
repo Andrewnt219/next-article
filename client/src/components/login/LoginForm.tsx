@@ -4,6 +4,7 @@ import Button from "@material-ui/core/Button";
 import { useForm, UseFormMethods } from "react-hook-form";
 import { Form } from "../ui/form/Form";
 import { TextField } from "../ui/form/TextField";
+import { SubmitButton } from "../ui/form/SubmitButton";
 
 type Props = {};
 type FormValues = {
@@ -45,9 +46,7 @@ function LoginForm({}: Props): ReactElement {
         })}
       />
 
-      <Button type="submit" variant="contained" color="primary">
-        Submit
-      </Button>
+      <SubmitButton>LOG IN</SubmitButton>
     </Form>
   );
 }
