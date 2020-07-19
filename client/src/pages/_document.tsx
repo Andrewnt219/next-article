@@ -1,13 +1,13 @@
-import React from 'react';
+import React from "react";
 import NextDocument, {
   DocumentContext,
   Head,
   Html,
   Main,
   NextScript,
-} from 'next/document';
-import { ServerStyleSheet as StyledComponentSheets } from 'styled-components';
-import { ServerStyleSheets as MaterialUiServerStyleSheets } from '@material-ui/core/styles';
+} from "next/document";
+import { ServerStyleSheet as StyledComponentSheets } from "styled-components";
+import { ServerStyleSheets as MaterialUiServerStyleSheets } from "@material-ui/core/styles";
 
 export default class Document extends NextDocument {
   static async getInitialProps(ctx: DocumentContext) {
@@ -44,10 +44,6 @@ export default class Document extends NextDocument {
     return (
       <Html>
         <Head>
-          <link
-            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,400&display=swap"
-            rel="stylesheet"
-          />
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <body>

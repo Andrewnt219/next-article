@@ -1,6 +1,20 @@
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
+  @font-face {
+    font-family: 'Montserrat';
+      src: url('/static/fonts/Montserrat-Bold.ttf');
+      src: url('/static/fonts/Montserrat-Light.ttf');
+      src: url('/static/fonts/Montserrat-Medium.ttf');
+      src: url('/static/fonts/Montserrat-Regular.ttf');
+    font-family: 'Roboto';
+      src: url('/static/fonts/Roboto-Bold.ttf');
+      src: url('/static/fonts/Roboto-Light.ttf');
+      src: url('/static/fonts/Roboto-Italic.ttf');
+      src: url('/static/fonts/Roboto-Medium.ttf');
+      src: url('/static/fonts/Roboto-Regular.ttf');
+  }
+  
   :root {
     font-size: 62.5%;
     font-family: 'Roboto', sans-serif;
@@ -26,6 +40,15 @@ export const GlobalStyle = createGlobalStyle`
     @media screen and (min-width: ${(p) => p.theme.breakpoints.values.xl}px) {
       font-size: 100%; /* 16px => 16px */
     }
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Montserrat', sans-serif;
   }
 
 

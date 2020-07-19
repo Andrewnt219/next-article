@@ -1,7 +1,6 @@
 import { createMuiTheme } from "@material-ui/core";
 import { DefaultTheme } from "styled-components";
 
-const HEADER_FONT = " 'Montserrat', sans-serif";
 const muiTheme = createMuiTheme({
   breakpoints: {
     values: {
@@ -18,26 +17,6 @@ const muiTheme = createMuiTheme({
     },
     secondary: {
       main: "#2F80ED",
-    },
-  },
-  typography: {
-    h1: {
-      fontFamily: HEADER_FONT,
-    },
-    h2: {
-      fontFamily: HEADER_FONT,
-    },
-    h3: {
-      fontFamily: HEADER_FONT,
-    },
-    h4: {
-      fontFamily: HEADER_FONT,
-    },
-    h5: {
-      fontFamily: HEADER_FONT,
-    },
-    h6: {
-      fontFamily: HEADER_FONT,
     },
   },
 });

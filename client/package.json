@@ -17,6 +17,7 @@
     "@types/styled-components": "^5.1.1",
     "axios": "^0.19.2",
     "next": "9.4.4",
+    "next-fonts": "^1.4.0",
     "next-images": "^1.4.0",
     "next-redux-wrapper": "^6.0.2",
     "nprogress": "^0.2.0",
