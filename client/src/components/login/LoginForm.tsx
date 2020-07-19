@@ -1,7 +1,7 @@
 import React, { ReactElement } from "react";
 import styled from "styled-components";
 import Button from "@material-ui/core/Button";
-import { useForm } from "react-hook-form";
+import { useForm, UseFormMethods } from "react-hook-form";
 import { Form } from "../ui/form/Form";
 import { TextField } from "../ui/form/TextField";
 
@@ -12,7 +12,9 @@ type FormValues = {
 };
 
 function LoginForm({}: Props): ReactElement {
-  const { register, handleSubmit } = useForm<FormValues>();
+  const { register, handleSubmit, errors } = useForm<FormValues>({
+    mode: "onChange",
+  });
 
   const onSubmit = handleSubmit((data) => {
     alert(JSON.stringify(data));
@@ -23,14 +25,24 @@ function LoginForm({}: Props): ReactElement {
         id="login_username"
         label="Username"
         name="username"
-        register={register}
+        errors={errors}
+        register={register({
+          required: "Username is required!",
+        })}
       />
 
       <TextField
         id="login_password"
         label="Password"
         name="password"
-        register={register}
+        errors={errors}
+        register={register({
+          required: "Password is required!",
+          minLength: {
+            value: 6,
+            message: "Min 6",
+          },
+        })}
       />
 
       <Button type="submit" variant="contained" color="primary">

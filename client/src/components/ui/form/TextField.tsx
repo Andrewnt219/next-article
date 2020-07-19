@@ -1,10 +1,17 @@
 import React, { InputHTMLAttributes, ReactElement } from "react";
-import { FieldElement, Ref } from "react-hook-form/dist/types/form";
+import {
+  FieldElement,
+  Ref,
+  UseFormMethods,
+} from "react-hook-form/dist/types/form";
 import styled from "styled-components";
+
+import { ErrorMessage } from "./ErrorMessage";
 
 type Props<FormValues> = InputProps &
   InputHTMLAttributes<HTMLInputElement> & {
-    register: (ref: (FieldElement<FormValues> & Ref) | null) => void;
+    errors: UseFormMethods["errors"];
+    register: (instance: HTMLInputElement | null) => void;
     name: keyof FormValues;
     label: string;
     id: string;
@@ -14,19 +21,25 @@ function TextField<FormValues>({
   label,
   labelBackgroundColor,
   register,
+  errors,
+  name,
   ...inputAttrs
 }: Props<FormValues>): ReactElement {
   return (
-    <Container>
-      <Input
-        {...inputAttrs}
-        ref={register}
-        labelBackgroundColor={labelBackgroundColor}
-        type="text"
-        placeholder={label}
-      />
-      <Label>{label}</Label>
-    </Container>
+    <>
+      <Container>
+        <Input
+          {...inputAttrs}
+          name={name}
+          ref={register}
+          labelBackgroundColor={labelBackgroundColor}
+          type="text"
+          placeholder={label}
+        />
+        <Label hasError={!!errors[name]}>{label}</Label>
+      </Container>
+      <ErrorMessage name={name} errors={errors} />
+    </>
   );
 }
 
@@ -58,7 +71,9 @@ const Input = styled.input<InputProps>`
   }
 `;
 
-type LabelProps = {};
+type LabelProps = {
+  hasError: boolean;
+};
 const Label = styled.label<LabelProps>`
   /* Position the label */
   left: 1rem;
@@ -70,6 +85,9 @@ const Label = styled.label<LabelProps>`
   transition: all 200ms ease;
 
   padding: 0 0.25rem;
+  &&& {
+    color: ${(p) => p.hasError && p.theme.palette.error.main};
+  }
 `;
 
 export { TextField };
