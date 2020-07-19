@@ -47,6 +47,7 @@ const Main = styled.main<MainProps>`
 type PageTitleProps = {};
 const PageTitle = styled.h1<PageTitleProps>`
   text-transform: uppercase;
+  margin-bottom: 2rem;
 `;
 
 export { MainLayout };

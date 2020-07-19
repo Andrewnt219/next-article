@@ -55,6 +55,10 @@ export const allRoutes: Route[] = [
     href: "/how-it-works",
     text: "How it works",
   },
+  {
+    href: "/login",
+    text: "Login",
+  },
 ];
 
 export { RouteItems as NavigationItems };
