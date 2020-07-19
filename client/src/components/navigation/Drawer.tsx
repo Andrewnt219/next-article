@@ -52,6 +52,10 @@ export default function Drawer({
   const classes = useStyles(styleProps);
   const theme = useTheme();
 
+  const activeStyle = {
+    color: theme.palette.primary.main,
+  };
+
   const drawerContent = (
     <>
       <div className={classes.toolbar}>
@@ -62,12 +66,8 @@ export default function Drawer({
       <List>
         {allRoutes.map(({ href, text }) => (
           <ListItem button key={href}>
-            <ListItemIcon>
-              <MailIcon />
-            </ListItemIcon>
-
-            <NavLink href={href}>
-              <ListItemText primary={text} onClick={handleDrawerToggle} />
+            <NavLink href={href} activeStyle={activeStyle}>
+              {text}
             </NavLink>
           </ListItem>
         ))}

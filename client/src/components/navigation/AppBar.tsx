@@ -48,6 +48,11 @@ export default function AppBar({
   handleDrawerToggle,
 }: AppBarProps): ReactElement {
   const classes = useStyles();
+
+  const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  };
+
   return (
     <>
       <ElevationScroll>
@@ -72,7 +77,7 @@ export default function AppBar({
             </Hidden>
 
             <Hidden smDown implementation="css">
-              <SearchBar />
+              <SearchBar handleSubmit={handleSearchSubmit} />
             </Hidden>
           </Toolbar>
         </MuiAppBar>

@@ -9,6 +9,8 @@ const useStyles = makeStyles((theme: Theme) =>
     link: {
       color: "#000",
       cursor: "pointer",
+      width: "100%",
+      display: "inline-block",
     },
   })
 );
