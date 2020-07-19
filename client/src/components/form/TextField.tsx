@@ -1,19 +1,25 @@
-import React, { ReactElement } from "react";
+import React, { InputHTMLAttributes, ReactElement } from "react";
+import { FieldElement, Ref } from "react-hook-form/dist/types/form";
 import styled from "styled-components";
 
-type Props = InputProps &
-  HTMLInputElement & {
+type Props<FormValues> = InputProps &
+  InputHTMLAttributes<HTMLInputElement> & {
     label: string;
+    register: (ref: (FieldElement<FormValues> & Ref) | null) => void;
+    name: keyof FormValues;
   };
 
-function TextField({
+function TextField<FormValues>({
   label,
   labelBackgroundColor,
-  ...HTMLInputElement
-}: Props): ReactElement {
+  register,
+  ...inputAttrs
+}: Props<FormValues>): ReactElement {
   return (
     <Container>
       <Input
+        {...inputAttrs}
+        ref={register}
         labelBackgroundColor={labelBackgroundColor}
         type="text"
         placeholder={label}
