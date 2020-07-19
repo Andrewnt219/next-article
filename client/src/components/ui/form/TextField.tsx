@@ -1,9 +1,5 @@
 import React, { InputHTMLAttributes, ReactElement } from "react";
-import {
-  FieldElement,
-  Ref,
-  UseFormMethods,
-} from "react-hook-form/dist/types/form";
+import { UseFormMethods } from "react-hook-form/dist/types/form";
 import styled from "styled-components";
 
 import { ErrorMessage } from "./ErrorMessage";
@@ -25,9 +21,11 @@ function TextField<FormValues>({
   name,
   ...inputAttrs
 }: Props<FormValues>): ReactElement {
+  const hasError = !!errors[name];
+
   return (
     <>
-      <Container>
+      <Container hasError={hasError}>
         <Input
           {...inputAttrs}
           name={name}
@@ -36,22 +34,24 @@ function TextField<FormValues>({
           type="text"
           placeholder={label}
         />
-        <Label hasError={!!errors[name]}>{label}</Label>
+        <Label hasError={hasError}>{label}</Label>
       </Container>
       <ErrorMessage name={name} errors={errors} />
     </>
   );
 }
 
-type ContainerProps = {};
+type ContainerProps = {
+  hasError: boolean;
+};
 const Container = styled.div<ContainerProps>`
   position: relative;
   border-radius: ${(p) => p.theme.shape.borderRadius}px;
-  border: 1px solid black;
+  border: 1px solid ${(p) => (p.hasError ? p.theme.palette.error.main : "#000")};
   width: 100%;
 
   /* Smoothen the corners */
-  padding: 0px 1px;
+  padding: 1rem 1.25rem;
 `;
 
 type InputProps = {
@@ -59,9 +59,9 @@ type InputProps = {
 };
 const Input = styled.input<InputProps>`
   /* Side padding = custom padding + label's side padding */
-  padding: 1rem 1.25rem;
   width: 100%;
   border: none;
+  outline: none;
 
   :not(:placeholder-shown) + label {
     /* Background must match the surrounding background */
