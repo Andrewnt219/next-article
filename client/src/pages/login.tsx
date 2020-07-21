@@ -8,7 +8,7 @@ type Props = {};
 
 function Login({}: Props): ReactElement {
   return (
-    <MainLayout pageTitle="LOGIN">
+    <MainLayout>
       <LoginForm />
     </MainLayout>
   );

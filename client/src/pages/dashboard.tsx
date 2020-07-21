@@ -11,7 +11,7 @@ const Dashboard = () => {
   const count = useSelector(countSelector);
   const dispatch = useDispatch();
   return (
-    <MainLayout pageTitle="Dashboard">
+    <MainLayout>
       <Head>
         <title key="title">Dashboard | Dooee</title>
       </Head>

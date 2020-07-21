@@ -11,7 +11,7 @@ const Courses = () => {
   const count = useSelector(countSelector);
   const dispatch = useDispatch();
   return (
-    <MainLayout pageTitle="All Courses">
+    <MainLayout>
       <Head>
         <title key="title">Discover Courses | Dooee</title>
       </Head>

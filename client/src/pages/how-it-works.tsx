@@ -10,7 +10,7 @@ const HowItWorks = () => {
   const count = useSelector(countSelector);
   const dispatch = useDispatch();
   return (
-    <MainLayout pageTitle="How it works">
+    <MainLayout>
       <Head>
         <title key="title">How it works | Dooee</title>
       </Head>
