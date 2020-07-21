@@ -18,3 +18,6 @@ export const password = yup
 export const confirmPassword = yup
   .string()
   .oneOf([yup.ref("password")], "Password does not match");
+
+export const requiredField = (fieldName: string) =>
+  yup.string().required(fieldName + " is required");

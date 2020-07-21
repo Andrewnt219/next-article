@@ -15,7 +15,12 @@ export type LoginFormValues = {
 };
 
 function LoginForm({}: Props): ReactElement {
-  const { register, handleSubmit, errors } = useForm<LoginFormValues>({
+  const {
+    register,
+    handleSubmit,
+    errors,
+    formState: { isValid },
+  } = useForm<LoginFormValues>({
     mode: "onChange",
     resolver: yupResolver(loginSchema),
   });
@@ -66,7 +71,7 @@ function LoginForm({}: Props): ReactElement {
         Forgot Password?
       </ForgotPasswordText>
 
-      <SubmitButton>LOG IN</SubmitButton>
+      <SubmitButton disabled={!isValid}>LOG IN</SubmitButton>
     </AuthForm.Form>
   );
 }
