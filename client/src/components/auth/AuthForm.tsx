@@ -57,7 +57,7 @@ function ShowPasswordIcon({
       }}
       onClick={handleClick}
     >
-      {passwordIsShown ? <VisibilityOffIcon /> : <VisibilityIcon />}
+      {passwordIsShown ? <VisibilityIcon /> : <VisibilityOffIcon />}
     </IconButton>
   );
 }
