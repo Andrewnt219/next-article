@@ -8,6 +8,7 @@ type Props = {
   name: string;
 };
 
+// TODO adds exit animation
 function ErrorMessage({ errors, name }: Props): ReactElement {
   return (
     <Error

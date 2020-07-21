@@ -1,12 +1,9 @@
 import React, { ReactElement } from "react";
-import styled, { css } from "styled-components";
-import Button from "@material-ui/core/Button";
-import { useForm, UseFormMethods } from "react-hook-form";
+import styled from "styled-components";
+import { useForm } from "react-hook-form";
+
 import { Form as BaseForm } from "../ui/form/Form";
 import { TextField } from "../ui/form/TextField";
-import { SubmitButton } from "../ui/form/SubmitButton";
-import { Logo } from "../ui/Logo";
-import { Hidden } from "@material-ui/core";
 
 type Props = {};
 type FormValues = {
@@ -22,14 +19,15 @@ function LoginForm({}: Props): ReactElement {
   const onSubmit = handleSubmit((data) => {
     alert(JSON.stringify(data));
   });
-  return (
-    <Form onSubmit={onSubmit}>
-      <Header>
-        <Hidden smDown implementation="css">
-          <Logo height="2rem" />
-        </Hidden>
-      </Header>
 
+  const footer = (
+    <>
+      New to Dooee? <SignUpText>Sign up now</SignUpText>
+    </>
+  );
+
+  return (
+    <Form onSubmit={onSubmit} footer={footer} heading="Welcome Back!">
       <TextField
         id="login_username"
         label="Username"
@@ -55,36 +53,16 @@ function LoginForm({}: Props): ReactElement {
       />
 
       <ForgotPasswordText>Forgot Password?</ForgotPasswordText>
-
-      <SubmitButton>LOG IN</SubmitButton>
-
-      <Text>
-        New to Dooee? <SignUpText>Sign up now</SignUpText>
-      </Text>
     </Form>
   );
 }
 
 type FormProps = {};
 const Form = styled(BaseForm)<FormProps>`
-  max-width: 25rem;
-
   @media screen and (min-width: ${(p) => p.theme.breakpoints.values["md"]}px) {
-    padding: 2rem 2rem 4rem 2rem;
-    margin-left: auto;
-    border: 1px solid black;
     border-radius: 4px;
   }
 `;
-
-type HeaderProps = {};
-const Header = styled.div<HeaderProps>`
-  display: flex;
-  justify-content: center;
-`;
-
-type WelcomeTextProps = {};
-const WelcomeText = styled.span<WelcomeTextProps>``;
 
 type SignUpTextProps = {};
 const SignUpText = styled.a<SignUpTextProps>`
@@ -107,15 +85,11 @@ const SignUpText = styled.a<SignUpTextProps>`
     transition: all 200ms ease;
   }
 
-  :hover ::after {
+  :hover ::after,
+  :active ::after,
+  :focus ::after {
     width: 100%;
   }
-`;
-
-type TextProps = {};
-const Text = styled.span<TextProps>`
-  display: block;
-  text-align: center;
 `;
 
 type ForgotPasswordTextProps = {};
