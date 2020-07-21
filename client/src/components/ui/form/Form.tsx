@@ -17,7 +17,7 @@ function Form({
   ...formProps
 }: Props): ReactElement {
   return (
-    <StyledForm {...formProps}>
+    <StyledForm {...formProps} noValidate>
       <Header>
         <Hidden mdUp implementation="css">
           <Heading>{heading}</Heading>
@@ -43,7 +43,7 @@ const StyledForm = styled.form<StyledFormProps>`
   padding: 2rem 2rem 4rem 2rem;
 
   & > *:not(:last-child) {
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
   }
 `;
 

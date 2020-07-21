@@ -53,7 +53,7 @@ export const GlobalStyle = createGlobalStyle`
 
 
   p {
-    font-size: 1.6rem;
+    
     line-height: 1.6;
   }
 

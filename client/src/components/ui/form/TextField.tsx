@@ -2,13 +2,12 @@ import React, { InputHTMLAttributes, ReactElement, ReactNode } from "react";
 import { UseFormMethods } from "react-hook-form/dist/types/form";
 import styled from "styled-components";
 
-import { ErrorMessage } from "./ErrorMessage";
-
 export type TextFieldProps<FormValues> = InputProps &
   InputHTMLAttributes<HTMLInputElement> & {
     errors: UseFormMethods["errors"];
     register: (instance: HTMLInputElement | null) => void;
     name: keyof FormValues;
+    description?: string;
     label: string;
     id: string;
     type:
@@ -29,14 +28,15 @@ function TextField<FormValues>({
   register,
   errors,
   name,
+  description,
   children,
   ...inputAttrs
 }: TextFieldProps<FormValues>): ReactElement {
   const hasError = !!errors[name];
 
   return (
-    <>
-      <Container hasError={hasError}>
+    <Container>
+      <InputContainer hasError={hasError}>
         <Input
           {...inputAttrs}
           name={name}
@@ -46,16 +46,25 @@ function TextField<FormValues>({
         />
         <Label hasError={hasError}>{label}</Label>
         {children}
-      </Container>
-      <ErrorMessage name={name} errors={errors} />
-    </>
+      </InputContainer>
+      {description && <Description>{description}</Description>}
+      <Error>{errors[name]?.message}&nbsp;</Error>
+      {/* <ErrorMessage name={name} errors={errors} /> */}
+    </Container>
   );
 }
 
-type ContainerProps = {
+type ContainerProps = {};
+const Container = styled.div<ContainerProps>`
+  & > *:not(:last-child) {
+    margin-bottom: 0.5rem;
+  }
+`;
+
+type InputContainerProps = {
   hasError: boolean;
 };
-const Container = styled.div<ContainerProps>`
+const InputContainer = styled.div<InputContainerProps>`
   position: relative;
   border-radius: ${(p) => p.theme.shape.borderRadius}px;
   border: 1px solid ${(p) => (p.hasError ? p.theme.palette.error.main : "#000")};
@@ -101,6 +110,16 @@ const Label = styled.label<LabelProps>`
   &&& {
     color: ${(p) => p.hasError && p.theme.palette.error.main};
   }
+`;
+
+type DescriptionProps = {};
+const Description = styled.p<DescriptionProps>`
+  font-size: smaller;
+`;
+
+const Error = styled.p`
+  color: ${(p) => p.theme.palette.error.main};
+  font-size: inherit;
 `;
 
 export { TextField };

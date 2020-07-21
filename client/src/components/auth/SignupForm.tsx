@@ -1,22 +1,29 @@
 import React, { ReactElement, useState } from "react";
-import styled from "styled-components";
+import { yupResolver } from "@hookform/resolvers";
 import { useForm } from "react-hook-form";
 
 import { TextField } from "../ui/form/TextField";
 import { AuthForm } from "./AuthForm";
 import { SubmitButton } from "../ui/form/SubmitButton";
+import { signupSchema } from "../../schema/signup.schema";
 
-type Props = {};
-type SignupFormValues = {
+const PASSWORD_DESCRIPTION =
+  "Minimum 8 characters, at least 1 Uppercase, 1 Lowercase, 1 Number and 1 Special Character";
+
+export type SignupFormValues = {
   fullname: string;
   email: string;
   password: string;
   confirmPassword: string;
 };
 
+type Props = {};
 function SignupForm({}: Props): ReactElement {
-  const { register, handleSubmit, errors } = useForm<SignupFormValues>({
+  const { register, handleSubmit, errors, formState } = useForm<
+    SignupFormValues
+  >({
     mode: "onChange",
+    resolver: yupResolver(signupSchema),
   });
 
   const [passwordIsShown, setPasswordIsShown] = useState(false);
@@ -44,9 +51,7 @@ function SignupForm({}: Props): ReactElement {
         label="Full Name"
         name="fullname"
         errors={errors}
-        register={register({
-          required: "Full Name is required!",
-        })}
+        register={register}
       />
 
       <TextField<SignupFormValues>
@@ -55,9 +60,7 @@ function SignupForm({}: Props): ReactElement {
         label="Email"
         name="email"
         errors={errors}
-        register={register({
-          required: "Email is required!",
-        })}
+        register={register}
       />
 
       <TextField<SignupFormValues>
@@ -66,13 +69,8 @@ function SignupForm({}: Props): ReactElement {
         label="Password"
         name="password"
         errors={errors}
-        register={register({
-          required: "Password is required!",
-          minLength: {
-            value: 6,
-            message: "Min 6",
-          },
-        })}
+        register={register}
+        description={PASSWORD_DESCRIPTION}
       >
         <AuthForm.ShowPasswordIcon
           passwordIsShown={passwordIsShown}
@@ -86,16 +84,10 @@ function SignupForm({}: Props): ReactElement {
         label="Confirm Password"
         name="confirmPassword"
         errors={errors}
-        register={register({
-          required: "Password is required!",
-          minLength: {
-            value: 6,
-            message: "Min 6",
-          },
-        })}
+        register={register}
       />
 
-      <SubmitButton>SIGN UP</SubmitButton>
+      <SubmitButton disabled={!formState.isValid}>SIGN UP</SubmitButton>
     </AuthForm.Form>
   );
 }

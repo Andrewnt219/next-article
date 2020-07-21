@@ -1,13 +1,15 @@
 import React, { ReactElement, useState } from "react";
+import { yupResolver } from "@hookform/resolvers";
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
 
 import { TextField } from "../ui/form/TextField";
 import { AuthForm } from "./AuthForm";
 import { SubmitButton } from "../ui/form/SubmitButton";
+import { loginSchema } from "../../schema/login.schema";
 
 type Props = {};
-type LoginFormValues = {
+export type LoginFormValues = {
   email: string;
   password: string;
 };
@@ -15,6 +17,7 @@ type LoginFormValues = {
 function LoginForm({}: Props): ReactElement {
   const { register, handleSubmit, errors } = useForm<LoginFormValues>({
     mode: "onChange",
+    resolver: yupResolver(loginSchema),
   });
 
   const [passwordIsShown, setPasswordIsShown] = useState(false);
@@ -37,9 +40,7 @@ function LoginForm({}: Props): ReactElement {
   return (
     <AuthForm.Form onSubmit={onSubmit} footer={footer} heading="Welcome Back!">
       <TextField<LoginFormValues>
-        register={register({
-          required: "Email is required!",
-        })}
+        register={register}
         type="email"
         id="login_email"
         label="Email"
@@ -53,13 +54,7 @@ function LoginForm({}: Props): ReactElement {
         label="Password"
         name="password"
         errors={errors}
-        register={register({
-          required: "Password is required!",
-          minLength: {
-            value: 6,
-            message: "Min 6",
-          },
-        })}
+        register={register}
       >
         <AuthForm.ShowPasswordIcon
           passwordIsShown={passwordIsShown}

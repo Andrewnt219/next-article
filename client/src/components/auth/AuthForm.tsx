@@ -8,9 +8,7 @@ import { Form as BaseForm } from "../ui/form/Form";
 
 type FormProps = {};
 const Form = styled(BaseForm)<FormProps>`
-  @media screen and (min-width: ${(p) => p.theme.breakpoints.values["md"]}px) {
-    border-radius: 4px;
-  }
+  border-radius: 4px;
 `;
 
 type FooterTextProps = {};

@@ -1,40 +1,35 @@
-import Button from "@material-ui/core/Button";
-import React, { ReactElement, ReactText } from "react";
-import styled from "styled-components";
-import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
+import MuiButton from "@material-ui/core/Button";
+import styled, { keyframes } from "styled-components";
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    button: {
-      display: "block",
-      width: "100%",
-      fontSize: "inherit",
-      padding: "0.75rem 0",
-      maxWidth: "35rem",
-      margin: "0 auto",
-    },
-  })
-);
+const pop = keyframes`
+  0% {
+    transform: scale(1);
+  }
 
-type Props = {
-  children: ReactText;
-};
+  60% {
+    transform: scale(1.05);
+  }
 
-function SubmitButton({ children }: Props): ReactElement {
-  const classes = useStyles();
-  return (
-    <Button
-      className={classes.button}
-      type="submit"
-      variant="contained"
-      color="primary"
-    >
-      {children}
-    </Button>
-  );
-}
+  100% {
+    transform: scale(1);
+  }
+`;
 
-type ContainerProps = {};
-const Container = styled.div<ContainerProps>``;
+const SubmitButton = styled(MuiButton).attrs({
+  variant: "contained",
+  color: "primary",
+  type: "submit",
+})`
+  display: block;
+  width: 100%;
+  font-size: inherit;
+  padding: 0.75rem 0;
+  max-width: 35rem;
+  margin: 0 auto;
+
+  :not(:disabled) {
+    animation: 300ms ${pop} linear;
+  }
+`;
 
 export { SubmitButton };
