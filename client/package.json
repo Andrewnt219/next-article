@@ -5,8 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "find:unused": "next-unused"
+    "start": "next start"
   },
   "dependencies": {
     "@hookform/error-message": "^0.0.3",
@@ -24,6 +23,7 @@
     "next-images": "^1.4.0",
     "next-redux-wrapper": "^6.0.2",
     "nprogress": "^0.2.0",
+    "polished": "^3.6.5",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-hook-form": "^6.0.6",
@@ -38,7 +38,6 @@
     "@types/yup": "^0.29.3",
     "babel-plugin-inline-react-svg": "^1.1.1",
     "babel-plugin-styled-components": "^1.10.7",
-    "next-unused": "^0.0.2",
     "typescript": "^3.9.6"
   },
   "next-unused": {

@@ -13,6 +13,10 @@ function Signup({}: Props): ReactElement {
     <MainLayout>
       <Head>
         <title key="title">Signup | Dooee</title>
+        <meta
+          name="description"
+          content="Register a new membership at Dooee for hundreds of free online English courses"
+        />
       </Head>
       <AuthLayout.Container>
         <AuthLayout.SvgContainer>

@@ -2,10 +2,10 @@ import Head from "next/head";
 import React, { ReactElement } from "react";
 import styled from "styled-components";
 import LoginHumanSvg from "../../public/static/svg/login.svg";
-
-import { MainLayout } from "../components/layout/MainLayout";
 import { LoginForm } from "../components/auth/LoginForm";
 import { AuthLayout } from "../components/layout/AuthLayout";
+
+import { MainLayout } from "../components/layout/MainLayout";
 
 type Props = {};
 
@@ -14,6 +14,10 @@ function Login({}: Props): ReactElement {
     <MainLayout>
       <Head>
         <title key="title">Login | Dooee</title>
+        <meta
+          name="description"
+          content="Signing in to Dooee for hundreds of free online English courses"
+        />
       </Head>
       <AuthLayout.Container>
         <AuthLayout.SvgContainer>

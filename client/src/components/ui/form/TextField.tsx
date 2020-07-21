@@ -44,12 +44,15 @@ function TextField<FormValues>({
           labelBackgroundColor={labelBackgroundColor}
           placeholder={label}
         />
-        <Label hasError={hasError}>{label}</Label>
+        <Label htmlFor={inputAttrs.id} hasError={hasError}>
+          {label}
+        </Label>
         {children}
       </InputContainer>
+
       {description && <Description>{description}</Description>}
+
       <Error>{errors[name]?.message}&nbsp;</Error>
-      {/* <ErrorMessage name={name} errors={errors} /> */}
     </Container>
   );
 }

@@ -28,7 +28,7 @@ const Container = styled.footer<ContainerProps>`
   bottom: 0;
   left: 0;
 
-  background: ${(p) => p.theme.palette.primary.light};
+  background: ${(p) => p.theme.palette.primary.dark};
   padding: 2rem;
 
   display: flex;

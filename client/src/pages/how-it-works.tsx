@@ -13,6 +13,10 @@ const HowItWorks = () => {
     <MainLayout>
       <Head>
         <title key="title">How it works | Dooee</title>
+        <meta
+          name="description"
+          content="This is why Dooee is your best online platform for studying english"
+        />
       </Head>
 
       <StyledButton color="secondary">{count}</StyledButton>

@@ -21,7 +21,7 @@ function ErrorMessage({ errors, name }: Props): ReactElement {
 
 type MessageProps = {};
 const Message = styled.p<MessageProps>`
-  color: ${(p) => p.theme.palette.error.main};
+  color: ${(p) => p.theme.palette.error.dark};
   font-size: inherit;
 `;
 

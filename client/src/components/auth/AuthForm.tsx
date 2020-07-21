@@ -49,6 +49,7 @@ function ShowPasswordIcon({
 }: ShowPasswordIconProps): ReactElement {
   return (
     <IconButton
+      aria-label="Toggle Password"
       style={{
         position: "absolute",
         right: "0",

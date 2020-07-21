@@ -14,6 +14,10 @@ const Courses = () => {
     <MainLayout>
       <Head>
         <title key="title">Discover Courses | Dooee</title>
+        <meta
+          name="description"
+          content="Find all of your previous purchased courses. Start learning today"
+        />
       </Head>
 
       <StyledButton color="secondary">{count}</StyledButton>
