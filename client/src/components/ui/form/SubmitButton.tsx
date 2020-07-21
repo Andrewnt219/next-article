@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme: Theme) =>
       display: "block",
       width: "100%",
       fontSize: "inherit",
-      padding: "1rem 0",
+      padding: "0.75rem 0",
       maxWidth: "35rem",
       margin: "0 auto",
     },
