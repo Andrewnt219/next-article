@@ -1,29 +1,28 @@
 import Head from "next/head";
 import React, { ReactElement } from "react";
-import styled from "styled-components";
-import LoginHumanSvg from "../../public/static/svg/login.svg";
+import SignupHumanSvg from "../../public/static/svg/signup.svg";
 
 import { MainLayout } from "../components/layout/MainLayout";
-import { LoginForm } from "../components/auth/LoginForm";
+import { SignupForm } from "../components/auth/SignupForm";
 import { AuthLayout } from "../components/layout/AuthLayout";
 
 type Props = {};
 
-function Login({}: Props): ReactElement {
+function Signup({}: Props): ReactElement {
   return (
     <MainLayout>
       <Head>
-        <title key="title">Login | Dooee</title>
+        <title key="title">Signup | Dooee</title>
       </Head>
       <AuthLayout.Container>
         <AuthLayout.SvgContainer>
-          <LoginHumanSvg />
+          <SignupHumanSvg />
         </AuthLayout.SvgContainer>
 
-        <LoginForm />
+        <SignupForm />
       </AuthLayout.Container>
     </MainLayout>
   );
 }
 
-export default Login;
+export default Signup;

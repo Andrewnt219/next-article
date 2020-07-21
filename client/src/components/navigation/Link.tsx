@@ -5,12 +5,13 @@ import NextLink from "next/link";
 type Props = {
   href: string;
   children: React.ReactNode;
+  className?: string;
 };
 
-function Link({ href, children }: Props): ReactElement {
+function Link({ href, children, className }: Props): ReactElement {
   return (
     <NextLink href={href}>
-      <StyledLink>{children}</StyledLink>
+      <StyledLink className={className}>{children}</StyledLink>
     </NextLink>
   );
 }

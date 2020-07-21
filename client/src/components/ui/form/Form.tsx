@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 import { Hidden } from "@material-ui/core";
 import { Logo } from "../Logo";
-import { SubmitButton } from "./SubmitButton";
 
 type Props = React.FormHTMLAttributes<HTMLFormElement> & {
   footer?: ReactNode;
@@ -31,7 +30,6 @@ function Form({
 
       {children}
 
-      <SubmitButton>LOG IN</SubmitButton>
       <Footer>{footer}</Footer>
     </StyledForm>
   );

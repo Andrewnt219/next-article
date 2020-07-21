@@ -1,16 +1,26 @@
-import React, { InputHTMLAttributes, ReactElement } from "react";
+import React, { InputHTMLAttributes, ReactElement, ReactNode } from "react";
 import { UseFormMethods } from "react-hook-form/dist/types/form";
 import styled from "styled-components";
 
 import { ErrorMessage } from "./ErrorMessage";
 
-type Props<FormValues> = InputProps &
+export type TextFieldProps<FormValues> = InputProps &
   InputHTMLAttributes<HTMLInputElement> & {
     errors: UseFormMethods["errors"];
     register: (instance: HTMLInputElement | null) => void;
     name: keyof FormValues;
     label: string;
     id: string;
+    type:
+      | "text"
+      | "password"
+      | "number"
+      | "tel"
+      | "email"
+      | "time"
+      | "week"
+      | "date"
+      | "datetime-local";
   };
 
 function TextField<FormValues>({
@@ -19,8 +29,9 @@ function TextField<FormValues>({
   register,
   errors,
   name,
+  children,
   ...inputAttrs
-}: Props<FormValues>): ReactElement {
+}: TextFieldProps<FormValues>): ReactElement {
   const hasError = !!errors[name];
 
   return (
@@ -31,10 +42,10 @@ function TextField<FormValues>({
           name={name}
           ref={register}
           labelBackgroundColor={labelBackgroundColor}
-          type="text"
           placeholder={label}
         />
         <Label hasError={hasError}>{label}</Label>
+        {children}
       </Container>
       <ErrorMessage name={name} errors={errors} />
     </>
