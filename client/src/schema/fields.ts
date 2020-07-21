@@ -1,9 +1,7 @@
 import * as yup from "yup";
 
 // Minimum 8 characters at least 1 Uppercase Alphabet, 1 Lowercase Alphabet, 1 Number and 1 Special Character:
-const PASSWORD_PATTERN = new RegExp(
-  "^(?=.*[a-z])(?=.*[A-Z])(?=.*d)(?=.*[$@$!%*?&])[A-Za-zd$@$!%*?&]{8,}"
-);
+const PASSWORD_PATTERN = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z0-9$@$!%*?&]{8,}/;
 
 export const email = yup
   .string()
