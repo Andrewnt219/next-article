@@ -16,6 +16,8 @@ const Home = () => {
         <title key="title">Welcome to Dooee</title>
       </Head>
 
+      <p style={{ color: "#f44336" }}>color test</p>
+
       <StyledButton color="secondary">{count}</StyledButton>
       <StyledButton
         color="primary"

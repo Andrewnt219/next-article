@@ -26,6 +26,10 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {
       display: "flex",
     },
+    listItem: {
+      padding: "1.5rem",
+      fontSize: "1.2rem",
+    },
     // necessary for content to be below app bar
     toolbar: (p: StyleProps) => ({
       minHeight: p.paddingTop,
@@ -53,7 +57,7 @@ export default function Drawer({
   const theme = useTheme();
 
   const activeStyle = {
-    color: theme.palette.primary.main,
+    color: theme.palette.text.primary,
   };
 
   const drawerContent = (
@@ -63,9 +67,9 @@ export default function Drawer({
       </div>
       <Divider />
 
-      <List>
+      <List component="nav">
         {allRoutes.map(({ href, text }) => (
-          <ListItem button key={href}>
+          <ListItem button key={href} classes={{ root: classes.listItem }}>
             <NavLink href={href} activeStyle={activeStyle}>
               {text}
             </NavLink>

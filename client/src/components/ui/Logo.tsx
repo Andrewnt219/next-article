@@ -28,10 +28,7 @@ const LogoWrapper = styled.a<LogoWrapperProps>`
     width: 100%;
 
     path {
-      fill: ${(p) =>
-        p.fill === "white"
-          ? p.theme.palette.common.white
-          : p.theme.palette.primary.main};
+      fill: ${(p) => p.fill === "white" && p.theme.palette.common.white};
     }
   }
 `;

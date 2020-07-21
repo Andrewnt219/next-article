@@ -14,7 +14,7 @@ const Form = styled(BaseForm)<FormProps>`
 type FooterTextProps = {};
 const FooterText = styled(Link)<FooterTextProps>`
   display: inline-block;
-  color: ${(p) => p.theme.palette.secondary.main};
+  color: ${(p) => p.theme.palette.text.secondary};
   width: max-content;
 
   position: relative;

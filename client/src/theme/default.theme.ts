@@ -12,6 +12,10 @@ const muiTheme = createMuiTheme({
     },
   },
   palette: {
+    text: {
+      primary: "#0E8640",
+      secondary: "#2064a5",
+    },
     primary: {
       main: "#13AA52",
     },

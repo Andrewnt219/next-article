@@ -58,7 +58,7 @@ type HeadingProps = {};
 const Heading = styled.h2<HeadingProps>`
   margin-bottom: 1rem;
   text-transform: uppercase;
-  color: ${(p) => p.theme.palette.primary.main};
+  color: ${(p) => p.theme.palette.text.primary};
 `;
 
 type FooterProps = {};

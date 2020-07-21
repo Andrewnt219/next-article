@@ -67,7 +67,7 @@ type InputContainerProps = {
 const InputContainer = styled.div<InputContainerProps>`
   position: relative;
   border-radius: ${(p) => p.theme.shape.borderRadius}px;
-  border: 1px solid ${(p) => (p.hasError ? p.theme.palette.error.main : "#000")};
+  border: 1px solid ${(p) => (p.hasError ? p.theme.palette.error.dark : "#000")};
   width: 100%;
 
   /* Smoothen the corners */
@@ -88,7 +88,7 @@ const Input = styled.input<InputProps>`
     background: ${(p) => p.labelBackgroundColor ?? "#fff"};
     transform: translate(0, -50%);
     opacity: 1;
-    color: ${(p) => p.theme.palette.primary.main};
+    color: ${(p) => p.theme.palette.text.primary};
   }
 `;
 
@@ -108,7 +108,7 @@ const Label = styled.label<LabelProps>`
   padding: 0 0.25rem;
 
   &&& {
-    color: ${(p) => p.hasError && p.theme.palette.error.main};
+    color: ${(p) => p.hasError && p.theme.palette.error.dark};
   }
 `;
 
@@ -118,7 +118,7 @@ const Description = styled.p<DescriptionProps>`
 `;
 
 const Error = styled.p`
-  color: ${(p) => p.theme.palette.error.main};
+  color: ${(p) => p.theme.palette.error.dark};
   font-size: inherit;
 `;
 
