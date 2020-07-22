@@ -6,6 +6,8 @@ import { TextField } from "../ui/form/TextField";
 import { AuthForm } from "./AuthForm";
 import { SubmitButton } from "../ui/form/SubmitButton";
 import { signupSchema } from "../../schema/signup.schema";
+import { useDispatch } from "react-redux";
+import { signup } from "../../features/authSlice";
 
 const PASSWORD_DESCRIPTION =
   "Minimum 8 characters, at least 1 Uppercase, 1 Lowercase, 1 Number and 1 Special Character";
@@ -25,11 +27,11 @@ function SignupForm({}: Props): ReactElement {
     mode: "onChange",
     resolver: yupResolver(signupSchema),
   });
-
   const [passwordIsShown, setPasswordIsShown] = useState(false);
+  const dispatch = useDispatch();
 
-  const onSubmit = handleSubmit((data) => {
-    alert(JSON.stringify(data));
+  const onSubmit = handleSubmit(({ confirmPassword, ...newUserData }) => {
+    dispatch(signup(newUserData));
   });
 
   const onShowPasswordClicked = () => {

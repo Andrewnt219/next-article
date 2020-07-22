@@ -7,6 +7,8 @@ import { TextField } from "../ui/form/TextField";
 import { AuthForm } from "./AuthForm";
 import { SubmitButton } from "../ui/form/SubmitButton";
 import { loginSchema } from "../../schema/login.schema";
+import { useDispatch } from "react-redux";
+import { login } from "../../features/authSlice";
 
 type Props = {};
 export type LoginFormValues = {
@@ -24,11 +26,11 @@ function LoginForm({}: Props): ReactElement {
     mode: "onChange",
     resolver: yupResolver(loginSchema),
   });
-
   const [passwordIsShown, setPasswordIsShown] = useState(false);
+  const dispatch = useDispatch();
 
   const onSubmit = handleSubmit((data) => {
-    alert(JSON.stringify(data));
+    dispatch(login(data));
   });
 
   const onShowPasswordClicked = () => {
