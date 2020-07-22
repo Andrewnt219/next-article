@@ -1,8 +1,8 @@
 import { HYDRATE, createWrapper, MakeStore } from "next-redux-wrapper";
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 import { AnyAction, combineReducers, Reducer } from "redux";
-import count from "../features/countSlice";
-import auth from "../features/authSlice";
+import count from "@src/features/countSlice";
+import auth from "@src/features/authSlice";
 
 const combinedReducer = combineReducers({ count, auth });
 

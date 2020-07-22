@@ -3,12 +3,12 @@ import { yupResolver } from "@hookform/resolvers";
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
 
-import { TextField } from "../ui/form/TextField";
+import { TextField } from "@components/ui/form/TextField";
 import { AuthForm } from "./AuthForm";
-import { SubmitButton } from "../ui/form/SubmitButton";
-import { loginSchema } from "../../schema/login.schema";
+import { SubmitButton } from "@components/ui/form/SubmitButton";
+import { loginSchema } from "@src/schema/login.schema";
 import { useDispatch } from "react-redux";
-import { login } from "../../features/authSlice";
+import { login } from "@src/features/authSlice";
 
 type Props = {};
 export type LoginFormValues = {

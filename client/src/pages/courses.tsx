@@ -5,7 +5,7 @@ import { wrapper } from "../app/store";
 
 import { add, asyncCount, countSelector } from "../features/countSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { MainLayout } from "../components/layout/MainLayout";
+import { MainLayout } from "@src/components/layout/MainLayout";
 
 const Courses = () => {
   const count = useSelector(countSelector);

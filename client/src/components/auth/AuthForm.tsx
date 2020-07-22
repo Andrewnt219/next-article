@@ -3,8 +3,8 @@ import VisibilityIcon from "@material-ui/icons/Visibility";
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 import { ReactElement } from "react";
 import styled from "styled-components";
-import { Link } from "../navigation/Link";
-import { Form as BaseForm } from "../ui/form/Form";
+import { Link } from "@components/navigation/Link";
+import { Form as BaseForm } from "@components/ui/form/Form";
 
 type FormProps = {};
 const Form = styled(BaseForm)<FormProps>`

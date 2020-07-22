@@ -1,5 +1,5 @@
-import { LoginFormValues } from "../../components/auth/LoginForm";
-import { SignupFormValues } from "../../components/auth/SignupForm";
+import { LoginFormValues } from "@src/components/auth/LoginForm";
+import { SignupFormValues } from "@src/components/auth/SignupForm";
 import { uiState } from "./uiState.types";
 
 export type authState = uiState & {
