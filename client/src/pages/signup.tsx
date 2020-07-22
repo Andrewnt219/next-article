@@ -1,6 +1,6 @@
 import Head from "next/head";
 import React, { ReactElement } from "react";
-import SignupHumanSvg from "../../public/static/svg/signup.svg";
+import SignupHumanSvg from "../../public/svg/signup.svg";
 
 import { MainLayout } from "../components/layout/MainLayout";
 import { SignupForm } from "../components/auth/SignupForm";

@@ -1,7 +1,7 @@
 import Head from "next/head";
 import React, { ReactElement } from "react";
 import styled from "styled-components";
-import LoginHumanSvg from "../../public/static/svg/login.svg";
+import LoginHumanSvg from "../../public/svg/login.svg";
 import { LoginForm } from "../components/auth/LoginForm";
 import { AuthLayout } from "../components/layout/AuthLayout";
 

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import styled from "styled-components";
-import LogoSvg from "../../../public/static/svg/dooee.svg";
+import LogoSvg from "../../../public/svg/dooee.svg";
 
 type Props = LogoWrapperProps & {};
 

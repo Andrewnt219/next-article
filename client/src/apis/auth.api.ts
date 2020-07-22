@@ -1,5 +1,6 @@
 import Axios from "axios";
+import { createApiPath } from "./base.api";
 
 export const authApi = Axios.create({
-  baseURL: "http://localhost:3001/api/v1/auth/",
+  baseURL: createApiPath("auth"),
 });
