@@ -1,6 +1,5 @@
 import React, { ReactElement } from "react";
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import useTheme from "@material-ui/core/styles/useTheme";
 import createStyles from "@material-ui/core/styles/createStyles";
 import MuiAppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
