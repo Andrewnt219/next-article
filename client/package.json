@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "eslint src --ext .ts,.tsx",
+    "lint:fix": "npm run lint -- --fix"
   },
   "dependencies": {
     "@hookform/error-message": "^0.0.3",
@@ -38,6 +40,7 @@
     "@types/yup": "^0.29.3",
     "babel-plugin-inline-react-svg": "^1.1.1",
     "babel-plugin-styled-components": "^1.10.7",
+    "eslint-plugin-import": "^2.22.0",
     "typescript": "^3.9.6"
   },
   "next-unused": {

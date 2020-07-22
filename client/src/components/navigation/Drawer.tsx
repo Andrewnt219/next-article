@@ -3,15 +3,7 @@ import Divider from "@material-ui/core/Divider";
 import MuiDrawer from "@material-ui/core/Drawer";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import MailIcon from "@material-ui/icons/Mail";
-import {
-  makeStyles,
-  useTheme,
-  Theme,
-  createStyles,
-} from "@material-ui/core/styles";
+import { makeStyles, useTheme, createStyles } from "@material-ui/core/styles";
 import { Logo } from "../ui/Logo";
 import { allRoutes } from "./RouteItems";
 import NavLink from "./NavLink";
@@ -21,7 +13,7 @@ type StyleProps = {
   paddingTop: string;
 };
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(() =>
   createStyles({
     root: {
       display: "flex",

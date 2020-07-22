@@ -30,7 +30,7 @@ type AuthLayoutComponents = {
   SvgContainer: typeof SvgContainer;
 };
 
-export const AuthLayout = {
+export const AuthLayout: AuthLayoutComponents = {
   Container,
   SvgContainer,
 };

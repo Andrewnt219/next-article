@@ -9,7 +9,6 @@ import {
   createSlice,
   PayloadAction,
 } from "@reduxjs/toolkit";
-import { AppThunk, RootState } from "../app/store";
 import { authApi } from "../apis/auth.api";
 import { AxiosError } from "axios";
 

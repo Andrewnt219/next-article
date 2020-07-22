@@ -1,4 +1,3 @@
-import IconButton from "@material-ui/core/IconButton";
 import React, { ReactElement } from "react";
 import styled from "styled-components";
 
