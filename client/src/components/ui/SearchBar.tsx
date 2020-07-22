@@ -1,9 +1,11 @@
 import React, { ReactElement } from "react";
 import styled from "styled-components";
-import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
+import makeStyles from "@material-ui/core/styles/makeStyles";
+import createStyles from "@material-ui/core/styles/createStyles";
 import SearchIcon from "@material-ui/icons/Search";
 import InputBase from "@material-ui/core/InputBase";
 import IconButton from "@material-ui/core/IconButton";
+import type { Theme } from "@material-ui/core/styles/createMuiTheme";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

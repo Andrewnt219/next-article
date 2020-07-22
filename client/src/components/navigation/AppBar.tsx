@@ -1,5 +1,7 @@
 import React, { ReactElement } from "react";
-import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
+import makeStyles from "@material-ui/core/styles/makeStyles";
+import useTheme from "@material-ui/core/styles/useTheme";
+import createStyles from "@material-ui/core/styles/createStyles";
 import MuiAppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
@@ -10,6 +12,7 @@ import Hidden from "@material-ui/core/Hidden";
 
 import { DesktopNavItems } from "./DesktopNavItems";
 import { SearchBar } from "../ui/SearchBar";
+import type { Theme } from "@material-ui/core/styles/createMuiTheme";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

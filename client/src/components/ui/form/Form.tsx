@@ -1,7 +1,7 @@
 import React, { ReactElement, ReactNode } from "react";
 import styled from "styled-components";
 
-import { Hidden } from "@material-ui/core";
+import Hidden from "@material-ui/core/Hidden";
 import { Logo } from "../Logo";
 
 type Props = React.FormHTMLAttributes<HTMLFormElement> & {

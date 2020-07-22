@@ -1,4 +1,4 @@
-import { useTheme } from "@material-ui/core";
+import useTheme from "@material-ui/core/styles/useTheme";
 import React, { ReactElement } from "react";
 import styled from "styled-components";
 import NavLink, { NavLinkProps } from "./NavLink";
