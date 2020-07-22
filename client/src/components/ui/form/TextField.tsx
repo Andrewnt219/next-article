@@ -1,5 +1,5 @@
 import React, { InputHTMLAttributes, ReactElement } from "react";
-import { UseFormMethods } from "react-hook-form/dist/types/form";
+import type { UseFormMethods } from "react-hook-form/dist/types/form";
 import styled from "styled-components";
 
 export type TextFieldProps<FormValues> = InputProps &

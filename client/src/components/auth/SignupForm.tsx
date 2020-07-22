@@ -48,15 +48,6 @@ function SignupForm({}: Props): ReactElement {
   return (
     <AuthForm.Form onSubmit={onSubmit} footer={footer} heading="Welcome Back!">
       <TextField<SignupFormValues>
-        type="text"
-        id="register_fullname"
-        label="Full Name"
-        name="fullname"
-        errors={errors}
-        register={register}
-      />
-
-      <TextField<SignupFormValues>
         type="email"
         id="register_email"
         label="Email"

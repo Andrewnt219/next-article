@@ -18,6 +18,7 @@ function Signup({}: Props): ReactElement {
           content="Register a new membership at Dooee for hundreds of free online English courses"
         />
       </Head>
+
       <AuthLayout.Container>
         <AuthLayout.SvgContainer>
           <SignupHumanSvg />

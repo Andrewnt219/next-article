@@ -1,7 +1,7 @@
 import IconButton from "@material-ui/core/IconButton";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import styled from "styled-components";
 import { Link } from "@components/navigation/Link";
 import { Form as BaseForm } from "@components/ui/form/Form";

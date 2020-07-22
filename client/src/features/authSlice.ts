@@ -1,4 +1,4 @@
-import {
+import type {
   authState,
   NewUserData,
   UserLoginData,
@@ -10,7 +10,7 @@ import {
   PayloadAction,
 } from "@reduxjs/toolkit";
 import { authApi } from "../apis/auth.api";
-import { AxiosError } from "axios";
+import type { AxiosError } from "axios";
 
 const initialState: authState = {
   email: null,
