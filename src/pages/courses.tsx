@@ -2,12 +2,9 @@ import Head from "next/head";
 
 import { MainLayout } from "@src/components/layout/MainLayout";
 
-import { youtubeApi } from "@src/apis/youtube.api";
-import { AxiosError } from "axios";
-
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
-import { SearchResponse } from "@src/@types/youtubeApi";
-import { VideoThumbnail } from "@components/courses/VideoThumbnail";
+import { EverythingApiResponse } from "@src/@types/newsapi";
+import { fetchNews } from "./api/search";
 
 type Props = InferGetServerSidePropsType<typeof getServerSideProps> & {};
 const Courses = ({ data }: Props) => {
@@ -20,37 +17,34 @@ const Courses = ({ data }: Props) => {
           content="Find all of your previous purchased courses. Start learning today"
         />
       </Head>
-      {typeof data !== "string" &&
-        data.items.map((video) => (
-          <VideoThumbnail key={video.id.videoId} video={video} />
-        ))}
+      {JSON.stringify(data)};
     </MainLayout>
   );
 };
 
 export const getServerSideProps: GetServerSideProps<{
-  data: SearchResponse | string;
+  data: EverythingApiResponse | string;
 }> = async () => {
-  const data = await getSearchResults("redux");
+  const data = await fetchNews("english");
   return {
     props: { data },
   };
 };
 
-async function getSearchResults(
-  query: string
-): Promise<SearchResponse | string> {
-  try {
-    const { data } = await youtubeApi.get<SearchResponse>("/search", {
-      params: {
-        q: query,
-      },
-    });
+// async function getSearchResults(
+//   query: string
+// ): Promise<SearchResponse | string> {
+//   try {
+//     const { data } = await youtubeApi.get<SearchResponse>("/search", {
+//       params: {
+//         q: query + " tutorial",
+//       },
+//     });
 
-    return data;
-  } catch (error) {
-    return (error as AxiosError).message;
-  }
-}
+//     return data;
+//   } catch (error) {
+//     return (error as AxiosError).message;
+//   }
+// }
 
 export default Courses;

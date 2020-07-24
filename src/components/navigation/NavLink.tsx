@@ -6,7 +6,7 @@ import styled, { css } from "styled-components";
 
 export type NavLinkProps = LinkProps & {
   children: ReactNode;
-  isDesktop: StyledLinkProps["isDesktop"];
+  isDesktop?: StyledLinkProps["isDesktop"];
   activeStyle?: Record<string, string | number>;
 };
 

@@ -35,4 +35,10 @@ const Video = styled.iframe<VideoProps>``;
 type VideoTitleProps = {};
 const VideoTitle = styled.h3<VideoTitleProps>``;
 
+type ChannelNameProps = {};
+const ChannelName = styled.p<ChannelNameProps>``;
+
+type VideoAgeProps = {};
+const VideoAge = styled.p<VideoAgeProps>``;
+
 export { VideoThumbnail };

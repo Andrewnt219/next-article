@@ -9,7 +9,7 @@ function DesktopNavItems({}: Props): ReactElement {
   return (
     <Container>
       {allRoutes.map(({ href, text }) => (
-        <DesktopNavigationItem key={href} href={href}>
+        <DesktopNavigationItem key={href} href={href} isDesktop>
           {text}
         </DesktopNavigationItem>
       ))}
