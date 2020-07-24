@@ -1,0 +1,13 @@
+{
+  "headers": [
+    {
+      "source": "/service-worker.js",
+      "headers": [
+        {
+          "key": "x-robots-tag",
+          "value": ""
+        }
+      ]
+    }
+  ]
+}
