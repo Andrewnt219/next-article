@@ -36,7 +36,7 @@ function SearchBar({ handleSubmit }: Props): ReactElement {
         classes={{ input: classes.inputInput, root: classes.inputRoot }}
         inputProps={{ "aria-label": "search" }}
       />
-      <IconButton type="submit">
+      <IconButton type="submit" aria-label="search icon">
         <SearchIcon
           color="inherit"
           classes={{ root: classes.iconRoot }}
