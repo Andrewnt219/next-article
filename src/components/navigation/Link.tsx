@@ -10,7 +10,7 @@ type Props = {
 
 function Link({ href, children, className }: Props): ReactElement {
   return (
-    <NextLink href={href}>
+    <NextLink href={href} passHref>
       <StyledLink className={className}>{children}</StyledLink>
     </NextLink>
   );
@@ -19,6 +19,11 @@ function Link({ href, children, className }: Props): ReactElement {
 type StyledLinkProps = {};
 const StyledLink = styled.a<StyledLinkProps>`
   cursor: pointer;
+  color: #000;
+
+  :visit {
+    color: currentColor;
+  }
 `;
 
 export { Link };

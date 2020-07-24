@@ -57,14 +57,6 @@ export const GlobalStyle = createGlobalStyle`
     line-height: 1.6;
   }
 
-  a {
-    &:link,
-    &:visited {
-    color: currentColor;
-  }
-  }
-
-
   *, *::before, *::after {
     margin: 0;
     padding: 0;

@@ -7,6 +7,7 @@ import { AxiosError } from "axios";
 
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { SearchResponse } from "@src/@types/youtubeApi";
+import { VideoThumbnail } from "@components/courses/VideoThumbnail";
 
 type Props = InferGetServerSidePropsType<typeof getServerSideProps> & {};
 const Courses = ({ data }: Props) => {
@@ -19,8 +20,10 @@ const Courses = ({ data }: Props) => {
           content="Find all of your previous purchased courses. Start learning today"
         />
       </Head>
-
-      <p>{JSON.stringify(data)}</p>
+      {typeof data !== "string" &&
+        data.items.map((video) => (
+          <VideoThumbnail key={video.id.videoId} video={video} />
+        ))}
     </MainLayout>
   );
 };
@@ -28,7 +31,7 @@ const Courses = ({ data }: Props) => {
 export const getServerSideProps: GetServerSideProps<{
   data: SearchResponse | string;
 }> = async () => {
-  const data = await getSearchResults("english");
+  const data = await getSearchResults("redux");
   return {
     props: { data },
   };

@@ -1,42 +1,51 @@
 import { useRouter } from "next/router";
 import NextLink, { LinkProps } from "next/link";
-import MuiLink from "@material-ui/core/Link";
-import { ReactElement, ReactNode } from "react";
-import makeStyles from "@material-ui/core/styles/makeStyles";
-import createStyles from "@material-ui/core/styles/createStyles";
+import React, { ReactElement, ReactNode } from "react";
 
-const useStyles = makeStyles(() =>
-  createStyles({
-    link: {
-      color: "#000",
-      cursor: "pointer",
-      width: "100%",
-      display: "inline-block",
-    },
-  })
-);
+import styled, { css } from "styled-components";
 
 export type NavLinkProps = LinkProps & {
   children: ReactNode;
+  isDesktop: StyledLinkProps["isDesktop"];
   activeStyle?: Record<string, string | number>;
 };
 
 function NavLink({
   children,
   activeStyle,
+  isDesktop,
   ...linkProps
 }: NavLinkProps): ReactElement {
   const router = useRouter();
-  const classes = useStyles(activeStyle);
   const isActive = router.asPath === (linkProps.as ?? linkProps.href);
 
   return (
-    <NextLink {...linkProps}>
-      <MuiLink style={isActive ? activeStyle : {}} className={classes.link}>
+    <NextLink {...linkProps} passHref>
+      <StyledLink isActive={isActive} isDesktop={isDesktop}>
         {children}
-      </MuiLink>
+      </StyledLink>
     </NextLink>
   );
 }
+
+type StyledLinkProps = {
+  isActive: boolean;
+  isDesktop?: boolean;
+};
+const activeDesktopLink = css`
+  background: ${(p) => p.theme.palette.primary.main};
+  color: ${(p) => p.theme.palette.common.white};
+`;
+const activeMobileLink = css`
+  color: ${(p) => p.theme.palette.text.primary};
+`;
+const StyledLink = styled.a<StyledLinkProps>`
+  color: #000;
+  cursor: pointer;
+  width: 100%;
+  display: inline-block;
+
+  ${(p) => p.isActive && (p.isDesktop ? activeDesktopLink : activeMobileLink)};
+`;
 
 export default NavLink;
