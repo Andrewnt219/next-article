@@ -33,7 +33,7 @@ type StyledLinkProps = {
   isDesktop?: boolean;
 };
 const activeDesktopLink = css`
-  background: ${(p) => p.theme.palette.primary.main};
+  background: ${(p) => p.theme.palette.text.primary};
   color: ${(p) => p.theme.palette.common.white};
 `;
 const activeMobileLink = css`
