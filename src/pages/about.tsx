@@ -2,7 +2,7 @@ import Head from "next/head";
 
 import { MainLayout } from "../components/layout/MainLayout";
 
-const HowItWorks = () => {
+const About = () => {
   return (
     <MainLayout>
       <Head>
@@ -16,4 +16,4 @@ const HowItWorks = () => {
   );
 };
 
-export default HowItWorks;
+export default About;

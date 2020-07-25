@@ -44,16 +44,16 @@ export const allRoutes: Route[] = [
     text: "Home",
   },
   {
-    href: "/dashboard",
-    text: "Dashboard",
+    href: "/menu",
+    text: "Menu",
   },
   {
-    href: "/courses",
-    text: "Courses",
+    href: "/about",
+    text: "About",
   },
   {
-    href: "/how-it-works",
-    text: "How it works",
+    href: "/cart",
+    text: "Cart",
   },
   {
     href: "/login",
@@ -61,4 +61,4 @@ export const allRoutes: Route[] = [
   },
 ];
 
-export { RouteItems as NavigationItems };
+export { RouteItems };

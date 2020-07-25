@@ -7,7 +7,7 @@ import { EverythingApiResponse } from "@src/@types/newsapi";
 import { fetchNews } from "./api/search";
 
 type Props = InferGetServerSidePropsType<typeof getServerSideProps> & {};
-const Courses = ({ data }: Props) => {
+const Menu = ({ data }: Props) => {
   return (
     <MainLayout>
       <Head>
@@ -47,4 +47,4 @@ export const getServerSideProps: GetServerSideProps<{
 //   }
 // }
 
-export default Courses;
+export default Menu;

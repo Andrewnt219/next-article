@@ -2,7 +2,7 @@ import Head from "next/head";
 
 import { MainLayout } from "../components/layout/MainLayout";
 
-const Dashboard = () => {
+const Cart = () => {
   return (
     <MainLayout>
       <Head>
@@ -16,4 +16,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default Cart;

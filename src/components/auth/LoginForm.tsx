@@ -69,20 +69,20 @@ function LoginForm({}: Props): ReactElement {
           handleClick={onShowPasswordClicked}
         />
       </TextField>
-
+      {/* 
       <ForgotPasswordText href="/forgot-password">
         Forgot Password?
-      </ForgotPasswordText>
+      </ForgotPasswordText> */}
 
       <SubmitButton disabled={!isValid}>LOG IN</SubmitButton>
     </AuthForm.Form>
   );
 }
 
-type ForgotPasswordTextProps = {};
-const ForgotPasswordText = styled(AuthForm.FooterText)<ForgotPasswordTextProps>`
-  display: block;
-  margin-left: auto;
-`;
+// type ForgotPasswordTextProps = {};
+// const ForgotPasswordText = styled(AuthForm.FooterText)<ForgotPasswordTextProps>`
+//   display: block;
+//   margin-left: auto;
+// `;
 
 export { LoginForm };
