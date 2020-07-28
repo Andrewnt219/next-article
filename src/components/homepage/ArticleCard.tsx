@@ -18,13 +18,19 @@ function ArticleCard({ article }: Props): ReactElement {
 
   return (
     <Container>
-      {urlToImage ? <Image src={urlToImage} loading="lazy" /> : <Line />}
+      {urlToImage ? (
+        <Image src={urlToImage} loading="lazy" alt={title} />
+      ) : (
+        <Line />
+      )}
 
       <Title>
         <ArticleLink href={url}>{title}</ArticleLink>
       </Title>
+
       <ArticleInfo>{publisher}</ArticleInfo>
       <ArticleInfo>{new Date(publishedAt).toLocaleDateString()}</ArticleInfo>
+
       <Content>{description}</Content>
     </Container>
   );
@@ -89,6 +95,10 @@ const ArticleLink = styled.a<ArticleLinkProps>`
   font-family: inherit;
   font-size: inherit;
   color: inherit;
+
+  :visited {
+    color: ${(p) => p.theme.palette.grey["700"]};
+  }
 `;
 
 type LineProps = {};
