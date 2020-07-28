@@ -2,17 +2,20 @@ import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
   @font-face {
-    font-family: 'Montserrat';
-      src: url('/fonts/Montserrat-Bold.ttf');
-      src: url('/fonts/Montserrat-Light.ttf');
-      src: url('/fonts/Montserrat-Medium.ttf');
-      src: url('/fonts/Montserrat-Regular.ttf');
     font-family: 'Roboto';
       src: url('/fonts/Roboto-Bold.ttf');
       src: url('/fonts/Roboto-Light.ttf');
       src: url('/fonts/Roboto-Italic.ttf');
       src: url('/fonts/Roboto-Medium.ttf');
       src: url('/fonts/Roboto-Regular.ttf');
+  }
+
+  @font-face {
+    font-family: 'Montserrat';
+      src: url('/fonts/Montserrat-Bold.ttf');
+      src: url('/fonts/Montserrat-Light.ttf');
+      src: url('/fonts/Montserrat-Medium.ttf');
+      src: url('/fonts/Montserrat-Regular.ttf');
   }
   
   :root {

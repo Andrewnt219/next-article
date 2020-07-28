@@ -126,13 +126,13 @@ export declare type NewsApiError = {
 
 export declare type Article = {
   source: Source;
-  author: string;
+  author: string | null;
   title: string;
-  description: string;
+  description: string | null;
   url: string;
-  urlToImage: string;
+  urlToImage: string | null;
   publishedAt: string;
-  content: string;
+  content: string | null;
 };
 
 declare type Source = {
