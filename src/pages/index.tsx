@@ -26,12 +26,14 @@ const Home = ({
   if (typeof data !== "string") fetchedArticles = data.articles;
   else error = data;
 
+  const [isFetchingArticles, setIsFetchingArticles] = useState(false);
   const [errorMessage, setErrorMessage] = useState(error);
   const [articles, setArticles] = useState(fetchedArticles);
   const router = useRouter();
 
   const onSubmit = async (params: TopHeadlinesApiRequest) => {
     try {
+      setIsFetchingArticles(true);
       const { data } = await Axios.get<TopHeadlinesApiResponse>(
         "/api/topHeadlines",
         {
@@ -40,7 +42,9 @@ const Home = ({
       );
 
       setArticles(data.articles);
+      setIsFetchingArticles(false);
 
+      // shallow renders the url
       router.push(
         {
           pathname: router.pathname,
@@ -63,7 +67,7 @@ const Home = ({
           content="Welcome to NextArticle, all your favorite sources in one paper"
         />
       </Head>
-      <FilterBoard onSubmit={onSubmit} />
+      <FilterBoard isFetching={isFetchingArticles} onSubmit={onSubmit} />
 
       {articles && renderArticles(articles)}
       {errorMessage && renderError(errorMessage)}

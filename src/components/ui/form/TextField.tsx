@@ -1,6 +1,7 @@
 import React, { InputHTMLAttributes, ReactElement } from "react";
 import type { UseFormMethods } from "react-hook-form/dist/types/form";
 import styled from "styled-components";
+import { ErrorMessage } from "./ErrorMessage";
 
 export type TextFieldProps<FormValues> = InputProps &
   InputHTMLAttributes<HTMLInputElement> & {
@@ -52,7 +53,7 @@ function TextField<FormValues>({
 
       {description && <Description>{description}</Description>}
 
-      <Error>{errors[name]?.message}&nbsp;</Error>
+      <ErrorMessage>{errors[name]?.message}&nbsp;</ErrorMessage>
     </Container>
   );
 }
@@ -75,6 +76,10 @@ const InputContainer = styled.div<InputContainerProps>`
 
   /* Smoothen the corners */
   padding: 1rem 1.25rem;
+
+  :focus-within {
+    border-color: ${(p) => p.theme.palette.primary.main};
+  }
 `;
 
 type InputProps = {
@@ -118,11 +123,6 @@ const Label = styled.label<LabelProps>`
 type DescriptionProps = {};
 const Description = styled.p<DescriptionProps>`
   font-size: smaller;
-`;
-
-const Error = styled.p`
-  color: ${(p) => p.theme.palette.error.dark};
-  font-size: inherit;
 `;
 
 export { TextField };
