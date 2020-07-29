@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers";
 import { filterSchema } from "@src/schema/filter/filter.schema";
 import { TopHeadlinesApiRequest } from "@src/@types/newsapi";
-import Button from "@material-ui/core/Button";
+import MuiButton from "@material-ui/core/Button";
 import _ from "lodash";
 
 import { categoryNames, countryCodes } from "@src/data/newsApi.data";
@@ -39,7 +39,7 @@ function FilterBoard({ onSubmit, isFetching }: Props): ReactElement {
   return (
     <Container>
       <Form onSubmit={onFormSubmit} noValidate>
-        <Row>
+        <Row justify="space-between">
           <Select<FilterFormValues>
             register={register}
             name="category"
@@ -79,41 +79,55 @@ function FilterBoard({ onSubmit, isFetching }: Props): ReactElement {
           errors={errors}
           label="Number of articles"
         />
+        <Row justify="center">
+          <Button
+            variant="text"
+            color="primary"
+            type="submit"
+            disabled={isFetching}
+          >
+            {isFetching ? "FETCHING..." : "SEARCH"}
+          </Button>
 
-        <SubmitButton
-          variant="text"
-          color="primary"
-          type="submit"
-          disabled={isFetching}
-        >
-          {isFetching ? "FETCHING..." : "SEARCH"}
-        </SubmitButton>
+          <Button
+            variant="text"
+            color="primary"
+            type="reset"
+            disabled={isFetching}
+          >
+            CLEAR FILTER
+          </Button>
+        </Row>
       </Form>
     </Container>
   );
 }
 
 type ContainerProps = {};
-const Container = styled.div<ContainerProps>``;
+const Container = styled.div<ContainerProps>`
+  width: 100%;
+  max-width: 35rem;
+  padding: 2rem 2rem 3rem 2rem;
+
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 1px -2px,
+    rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0, 0, 0, 0.12) 0px 1px 5px 0px;
+`;
 
 type FormProps = {};
-const Form = styled.form<FormProps>`
-  width: 80%;
-  max-width: 25rem;
-`;
+const Form = styled.form<FormProps>``;
 
-type RowProps = {};
+type RowProps = {
+  justify?: "space-between" | "space-around" | "space-evenly" | "center";
+};
 const Row = styled.div<RowProps>`
   display: flex;
-  justify-content: space-between;
+  justify-content: ${(p) => p.justify};
 `;
 
-type SubmitButtonProps = {};
-const SubmitButton = styled(Button)<SubmitButtonProps>`
-  display: block;
-  margin: 0 auto;
-
+type ButtonProps = {};
+const Button = styled(MuiButton)<ButtonProps>`
   font-size: inherit;
+  padding: 1rem 1.5rem;
 `;
 
 export { FilterBoard };

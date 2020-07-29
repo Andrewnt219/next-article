@@ -20,20 +20,18 @@ function ArticleCard({ article }: Props): ReactElement {
 
   return (
     <Container>
-      <ImageContainer>
-        {urlToImage && imageIsLoading && <CustomLoader size="4rem" />}
+      {urlToImage && imageIsLoading && <CustomLoader size="4rem" />}
 
-        {urlToImage ? (
-          <Image
-            src={urlToImage}
-            onLoad={() => setImageIsLoading(false)}
-            loading="lazy"
-            alt={title}
-          />
-        ) : (
-          <Line />
-        )}
-      </ImageContainer>
+      {urlToImage ? (
+        <Image
+          src={urlToImage}
+          onLoad={() => setImageIsLoading(false)}
+          loading="lazy"
+          alt={title}
+        />
+      ) : (
+        <Line />
+      )}
 
       <Title>
         <ArticleLink href={url}>{title}</ArticleLink>
@@ -127,16 +125,10 @@ const Line = styled.div<LineProps>`
   }
 `;
 
-type ImageContainerProps = {};
-const ImageContainer = styled.div<ImageContainerProps>`
-  width: 100%;
-  height: 15rem;
-`;
-
 type ImageProps = {};
 const Image = styled.img<ImageProps>`
   width: 100%;
-  height: 100%;
+  height: 15rem;
 
   object-fit: cover;
 `;
