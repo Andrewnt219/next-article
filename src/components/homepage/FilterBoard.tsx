@@ -1,5 +1,5 @@
 import { TextField } from "@components/ui/form/TextField";
-import React, { ReactElement } from "react";
+import React, { ReactElement, forwardRef } from "react";
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers";
@@ -17,6 +17,8 @@ type Props = {
   isFetching: boolean;
   className?: string;
 };
+type Ref = HTMLDivElement;
+
 export type FilterFormValues = Pick<
   TopHeadlinesApiRequest,
   "country" | "q" | "category" | "pageSize"
@@ -28,82 +30,84 @@ export type FilterFormValues = Pick<
  * @param isFetching is the article being fetched
  * @param className for styled-components
  */
-function FilterBoard({ onSubmit, isFetching, className }: Props): ReactElement {
-  const { handleSubmit, errors, register } = useForm<FilterFormValues>({
-    resolver: yupResolver(filterSchema),
-  });
+const FilterBoard = forwardRef<Ref, Props>(
+  ({ onSubmit, isFetching, className }, ref): ReactElement => {
+    const { handleSubmit, errors, register } = useForm<FilterFormValues>({
+      resolver: yupResolver(filterSchema),
+    });
 
-  const onFormSubmit = handleSubmit((data) => {
-    const emptyFilteredData = _.omitBy(data, _.isEmpty);
+    const onFormSubmit = handleSubmit((data) => {
+      const emptyFilteredData = _.omitBy(data, _.isEmpty);
 
-    onSubmit(emptyFilteredData);
-  });
-  return (
-    <Container className={className}>
-      <Form onSubmit={onFormSubmit} noValidate>
-        <Row justify="space-between">
-          <Select<FilterFormValues>
-            register={register}
-            name="category"
-            id="filter-category"
+      onSubmit(emptyFilteredData);
+    });
+    return (
+      <Container ref={ref} className={className}>
+        <Form onSubmit={onFormSubmit} noValidate>
+          <Row justify="space-between">
+            <Select<FilterFormValues>
+              register={register}
+              name="category"
+              id="filter-category"
+              errors={errors}
+              options={categoryNames}
+              label="Category"
+              width="9.5rem"
+            />
+
+            <Select<FilterFormValues>
+              register={register}
+              name="country"
+              id="filter-country"
+              errors={errors}
+              options={countryCodes}
+              label="Country"
+              width="3.5rem"
+            />
+          </Row>
+
+          <TextField<FilterFormValues>
+            type="text"
+            id="filter_query"
+            label="Search Term"
+            name="q"
             errors={errors}
-            options={categoryNames}
-            label="Category"
-            width="9.5rem"
+            register={register}
           />
 
-          <Select<FilterFormValues>
+          <Range<FilterFormValues>
+            min={20}
+            max={100}
+            step={5}
+            name="pageSize"
             register={register}
-            name="country"
-            id="filter-country"
             errors={errors}
-            options={countryCodes}
-            label="Country"
-            width="3.5rem"
+            label="Number of articles"
           />
-        </Row>
+          <Row justify="center">
+            <Button
+              variant="text"
+              color="primary"
+              type="submit"
+              disabled={isFetching}
+            >
+              {isFetching ? "FETCHING..." : "SEARCH"}
+            </Button>
 
-        <TextField<FilterFormValues>
-          type="text"
-          id="filter_query"
-          label="Search Term"
-          name="q"
-          errors={errors}
-          register={register}
-        />
-
-        <Range<FilterFormValues>
-          min={20}
-          max={100}
-          step={5}
-          name="pageSize"
-          register={register}
-          errors={errors}
-          label="Number of articles"
-        />
-        <Row justify="center">
-          <Button
-            variant="text"
-            color="primary"
-            type="submit"
-            disabled={isFetching}
-          >
-            {isFetching ? "FETCHING..." : "SEARCH"}
-          </Button>
-
-          <Button
-            variant="text"
-            color="primary"
-            type="reset"
-            disabled={isFetching}
-          >
-            CLEAR FILTER
-          </Button>
-        </Row>
-      </Form>
-    </Container>
-  );
-}
+            <Button
+              variant="text"
+              color="primary"
+              type="reset"
+              disabled={isFetching}
+            >
+              CLEAR FILTER
+            </Button>
+          </Row>
+        </Form>
+      </Container>
+    );
+  }
+);
 
 type ContainerProps = {};
 const Container = styled.div<ContainerProps>`

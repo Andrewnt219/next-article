@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from "react";
+import React, { ReactElement, useRef, useState } from "react";
 import Head from "next/head";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 
@@ -15,6 +15,7 @@ import { useRouter } from "next/router";
 import FilterListIcon from "@material-ui/icons/FilterList";
 import IconButton from "@material-ui/core/IconButton";
 import styled from "styled-components";
+import { useClickOutside } from "@src/hooks/useClickOutside";
 
 /**
  * @description render te Homepage and fetch (filtered) topHeadlines
@@ -64,9 +65,12 @@ const Home = ({
     }
   };
 
+  /* FilterBoard appear controller */
   const onFilterIconClicked = () => {
     setShowFilter((show) => !show);
   };
+  const ref = useRef<HTMLDivElement>(null);
+  useClickOutside(ref, () => setShowFilter(false));
 
   return (
     <MainLayout>
@@ -85,6 +89,7 @@ const Home = ({
 
         {showFilter && (
           <CustomFilterBoard
+            ref={ref}
             isFetching={isFetchingArticles}
             onSubmit={onSubmit}
           />
