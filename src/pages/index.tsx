@@ -84,14 +84,13 @@ const Home = ({
         />
       </Head>
 
-      <FilterContainer>
+      <FilterContainer ref={ref}>
         <IconButton aria-label="filter icon" onClick={onFilterIconClicked}>
           <FilterListIcon />
         </IconButton>
 
         {showFilter && (
           <CustomFilterBoard
-            ref={ref}
             isFetching={isFetchingArticles}
             onSubmit={onSubmit}
           />
