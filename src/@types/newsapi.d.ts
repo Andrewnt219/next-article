@@ -158,7 +158,7 @@ declare type Language =
 
 declare type CategoryName =
   | "business"
-  | "entertainment "
+  | "entertainment"
   | "general"
   | "health"
   | "science"

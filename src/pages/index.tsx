@@ -11,6 +11,7 @@ import { fetchTopHeadlines } from "@src/helpers/newsapi.helpers";
 import { ArticleCards } from "@components/homepage/ArticleCards";
 import { FilterBoard } from "@components/homepage/FilterBoard";
 import Axios, { AxiosError } from "axios";
+import { useRouter } from "next/router";
 
 /**
  * @description render te Homepage and fetch (filtered) topHeadlines
@@ -27,6 +28,7 @@ const Home = ({
 
   const [errorMessage, setErrorMessage] = useState(error);
   const [articles, setArticles] = useState(fetchedArticles);
+  const router = useRouter();
 
   const onSubmit = async (params: TopHeadlinesApiRequest) => {
     try {
@@ -36,7 +38,17 @@ const Home = ({
           params,
         }
       );
+
       setArticles(data.articles);
+
+      router.push(
+        {
+          pathname: router.pathname,
+          query: params,
+        },
+        undefined,
+        { shallow: true }
+      );
     } catch (error) {
       setErrorMessage((error as AxiosError).message);
     }

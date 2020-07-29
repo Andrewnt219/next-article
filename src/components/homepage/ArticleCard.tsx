@@ -88,6 +88,11 @@ const Title = styled.h5<TitleProps>`
   margin: 1rem 0;
 
   color: ${(p) => p.theme.palette.common.black};
+
+  :hover,
+  :active {
+    text-decoration: underline;
+  }
 `;
 
 type ArticleLinkProps = {};
@@ -128,7 +133,7 @@ const Content = styled.p<ContentProps>`
 type ArticleInfoProps = {};
 const ArticleInfo = styled.span<ArticleInfoProps>`
   display: inline-block;
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
   margin-right: 1rem;
 
   border: 1px solid #ccc;

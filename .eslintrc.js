@@ -22,5 +22,6 @@ module.exports = {
   rules: {
     "linebreak-style": ["error", "windows"],
     "react/react-in-jsx-scope": "off",
+    "no-debugger": "off",
   },
 };
