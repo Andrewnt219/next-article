@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { TextField } from "../ui/form/TextField";
 import { AuthForm } from "./AuthForm";
 import { SubmitButton } from "../ui/form/SubmitButton";
-import { signupSchema } from "../../schema/signup.schema";
+import { signupSchema } from "@src/schema/auth/signup.schema";
 import { useDispatch } from "react-redux";
 import { signup } from "../../features/authSlice";
 

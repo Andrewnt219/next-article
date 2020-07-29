@@ -1,50 +1,52 @@
-import Head from "next/head";
+export default () => {};
 
-import { MainLayout } from "@src/components/layout/MainLayout";
+// import Head from "next/head";
 
-import { GetServerSideProps, InferGetServerSidePropsType } from "next";
-import { EverythingApiResponse } from "@src/@types/newsapi";
-import { fetchNews } from "./api/search";
+// import { MainLayout } from "@src/components/layout/MainLayout";
 
-type Props = InferGetServerSidePropsType<typeof getServerSideProps> & {};
-const Menu = ({ data }: Props) => {
-  return (
-    <MainLayout>
-      <Head>
-        <title key="title">Discover Courses | Dooee</title>
-        <meta
-          name="description"
-          content="Find all of your previous purchased courses. Start learning today"
-        />
-      </Head>
-      {JSON.stringify(data)};
-    </MainLayout>
-  );
-};
+// import { GetServerSideProps, InferGetServerSidePropsType } from "next";
+// import { EverythingApiResponse } from "@src/@types/newsapi";
+// import { fetchNews } from "./api/search";
 
-export const getServerSideProps: GetServerSideProps<{
-  data: EverythingApiResponse | string;
-}> = async () => {
-  const data = await fetchNews("english");
-  return {
-    props: { data },
-  };
-};
+// type Props = InferGetServerSidePropsType<typeof getServerSideProps> & {};
+// const Menu = ({ data }: Props) => {
+//   return (
+//     <MainLayout>
+//       <Head>
+//         <title key="title">Discover Courses | Dooee</title>
+//         <meta
+//           name="description"
+//           content="Find all of your previous purchased courses. Start learning today"
+//         />
+//       </Head>
+//       {JSON.stringify(data)};
+//     </MainLayout>
+//   );
+// };
 
-// async function getSearchResults(
-//   query: string
-// ): Promise<SearchResponse | string> {
-//   try {
-//     const { data } = await youtubeApi.get<SearchResponse>("/search", {
-//       params: {
-//         q: query + " tutorial",
-//       },
-//     });
+// export const getServerSideProps: GetServerSideProps<{
+//   data: EverythingApiResponse | string;
+// }> = async () => {
+//   const data = await fetchNews("english");
+//   return {
+//     props: { data },
+//   };
+// };
 
-//     return data;
-//   } catch (error) {
-//     return (error as AxiosError).message;
-//   }
-// }
+// // async function getSearchResults(
+// //   query: string
+// // ): Promise<SearchResponse | string> {
+// //   try {
+// //     const { data } = await youtubeApi.get<SearchResponse>("/search", {
+// //       params: {
+// //         q: query + " tutorial",
+// //       },
+// //     });
 
-export default Menu;
+// //     return data;
+// //   } catch (error) {
+// //     return (error as AxiosError).message;
+// //   }
+// // }
+
+// export default Menu;

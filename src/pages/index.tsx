@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useState } from "react";
 import Head from "next/head";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 
@@ -8,16 +8,40 @@ import {
   TopHeadlinesApiResponse,
 } from "@src/@types/newsapi";
 import { fetchTopHeadlines } from "@src/helpers/newsapi.helpers";
-import { ArticleCard } from "@components/homepage/ArticleCard";
 import { ArticleCards } from "@components/homepage/ArticleCards";
+import { FilterBoard } from "@components/homepage/FilterBoard";
+import Axios, { AxiosError } from "axios";
 
 /**
- * @description render te Homepage and fetch topHeadlines
+ * @description render te Homepage and fetch (filtered) topHeadlines
  * @param data topHeadlines article or an error message
  */
 const Home = ({
   data,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+  let fetchedArticles: TopHeadlinesApiResponse["articles"] | null = null;
+  let error: string | null = null;
+
+  if (typeof data !== "string") fetchedArticles = data.articles;
+  else error = data;
+
+  const [errorMessage, setErrorMessage] = useState(error);
+  const [articles, setArticles] = useState(fetchedArticles);
+
+  const onSubmit = async (params: TopHeadlinesApiRequest) => {
+    try {
+      const { data } = await Axios.get<TopHeadlinesApiResponse>(
+        "/api/topHeadlines",
+        {
+          params,
+        }
+      );
+      setArticles(data.articles);
+    } catch (error) {
+      setErrorMessage((error as AxiosError).message);
+    }
+  };
+
   return (
     <MainLayout>
       <Head>
@@ -27,8 +51,10 @@ const Home = ({
           content="Welcome to NextArticle, all your favorite sources in one paper"
         />
       </Head>
+      <FilterBoard onSubmit={onSubmit} />
 
-      {renderData(data)}
+      {articles && renderArticles(articles)}
+      {errorMessage && renderError(errorMessage)}
     </MainLayout>
   );
 };
@@ -56,14 +82,14 @@ export const getServerSideProps: GetServerSideProps<{
  * @description renders a list of headlines or an error message
  * @param data the data needs rendering
  */
-function renderData(
-  data: TopHeadlinesApiResponse | string
+function renderArticles(
+  articles: TopHeadlinesApiResponse["articles"]
 ): ReactElement | ReactElement[] {
-  if (typeof data === "string") {
-    return <p>{data}</p>;
-  }
+  return <ArticleCards articles={articles} />;
+}
 
-  return <ArticleCards articles={data.articles} />;
+function renderError(message: string) {
+  return <p>{message}</p>;
 }
 
 export default Home;

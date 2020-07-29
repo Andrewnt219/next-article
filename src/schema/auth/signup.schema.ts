@@ -1,6 +1,6 @@
 import * as yup from "yup";
-import * as fields from "./fields";
-import { SignupFormValues } from "../components/auth/SignupForm";
+import * as fields from "./authFields";
+import { SignupFormValues } from "@components/auth/SignupForm";
 
 const { email, confirmPassword, fullname, password } = fields;
 

@@ -1,12 +1,11 @@
 import React, { ReactElement, useState } from "react";
 
-import styled from "styled-components";
 import { useForm } from "react-hook-form";
 
 import { TextField } from "@components/ui/form/TextField";
 import { AuthForm } from "./AuthForm";
 import { SubmitButton } from "@components/ui/form/SubmitButton";
-import { loginSchema } from "@src/schema/login.schema";
+import { loginSchema } from "@src/schema/auth/login.schema";
 import { useDispatch } from "react-redux";
 import { login } from "@src/features/authSlice";
 import { yupResolver } from "@hookform/resolvers";
