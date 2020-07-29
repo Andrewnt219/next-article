@@ -12,6 +12,9 @@ import { ArticleCards } from "@components/homepage/ArticleCards";
 import { FilterBoard } from "@components/homepage/FilterBoard";
 import Axios, { AxiosError } from "axios";
 import { useRouter } from "next/router";
+import FilterListIcon from "@material-ui/icons/FilterList";
+import IconButton from "@material-ui/core/IconButton";
+import styled from "styled-components";
 
 /**
  * @description render te Homepage and fetch (filtered) topHeadlines
@@ -20,6 +23,7 @@ import { useRouter } from "next/router";
 const Home = ({
   data,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+  /* Fetching data */
   let fetchedArticles: TopHeadlinesApiResponse["articles"] | null = null;
   let error: string | null = null;
 
@@ -29,8 +33,10 @@ const Home = ({
   const [isFetchingArticles, setIsFetchingArticles] = useState(false);
   const [errorMessage, setErrorMessage] = useState(error);
   const [articles, setArticles] = useState(fetchedArticles);
-  const router = useRouter();
 
+  /* Filter form handling */
+  const [showFilter, setShowFilter] = useState(false);
+  const router = useRouter();
   const onSubmit = async (params: TopHeadlinesApiRequest) => {
     try {
       setIsFetchingArticles(true);
@@ -58,6 +64,10 @@ const Home = ({
     }
   };
 
+  const onFilterIconClicked = () => {
+    setShowFilter((show) => !show);
+  };
+
   return (
     <MainLayout>
       <Head>
@@ -67,7 +77,19 @@ const Home = ({
           content="Welcome to NextArticle, all your favorite sources in one paper"
         />
       </Head>
-      <FilterBoard isFetching={isFetchingArticles} onSubmit={onSubmit} />
+
+      <FilterContainer>
+        <IconButton aria-label="filter icon" onClick={onFilterIconClicked}>
+          <FilterListIcon />
+        </IconButton>
+
+        {showFilter && (
+          <CustomFilterBoard
+            isFetching={isFetchingArticles}
+            onSubmit={onSubmit}
+          />
+        )}
+      </FilterContainer>
 
       {articles && renderArticles(articles)}
       {errorMessage && renderError(errorMessage)}
@@ -111,5 +133,19 @@ function renderArticles(
 function renderError(message: string) {
   return <p>{message}</p>;
 }
+
+type FilterContainerProps = {};
+const FilterContainer = styled.div<FilterContainerProps>`
+  position: relative;
+`;
+
+type CustomFilterBoardProps = {};
+const CustomFilterBoard = styled(FilterBoard)<CustomFilterBoardProps>`
+  position: absolute;
+  left: 0;
+  top: 3.5rem;
+  background: #fff;
+  z-index: ${(p) => p.theme.zIndex.modal};
+`;
 
 export default Home;

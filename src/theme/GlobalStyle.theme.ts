@@ -75,6 +75,7 @@ export const GlobalStyle = createGlobalStyle`
   textarea {
     font-size: inherit;
     font-family: inherit;
+    background: transparent;
   }
 
   #__next {

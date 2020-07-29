@@ -15,6 +15,7 @@ import { Range } from "@components/ui/form/Range";
 type Props = {
   onSubmit: (params: TopHeadlinesApiRequest) => void;
   isFetching: boolean;
+  className?: string;
 };
 export type FilterFormValues = Pick<
   TopHeadlinesApiRequest,
@@ -25,8 +26,9 @@ export type FilterFormValues = Pick<
  * @description A control for filtering fetched articles
  * @param onSubmit handle submit
  * @param isFetching is the article being fetched
+ * @param className for styled-components
  */
-function FilterBoard({ onSubmit, isFetching }: Props): ReactElement {
+function FilterBoard({ onSubmit, isFetching, className }: Props): ReactElement {
   const { handleSubmit, errors, register } = useForm<FilterFormValues>({
     resolver: yupResolver(filterSchema),
   });
@@ -37,7 +39,7 @@ function FilterBoard({ onSubmit, isFetching }: Props): ReactElement {
     onSubmit(emptyFilteredData);
   });
   return (
-    <Container>
+    <Container className={className}>
       <Form onSubmit={onFormSubmit} noValidate>
         <Row justify="space-between">
           <Select<FilterFormValues>

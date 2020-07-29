@@ -85,6 +85,7 @@ const Input = styled.input<InputProps>`
   height: 1px;
   background: ${(p) => p.theme.palette.common.black};
   outline: none;
+  cursor: pointer;
 
   :focus {
     background: ${(p) => p.theme.palette.primary.light};
