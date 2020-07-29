@@ -3,17 +3,15 @@ import { UseFormMethods } from "react-hook-form";
 import styled from "styled-components";
 import { ErrorMessage } from "./ErrorMessage";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
+import { CustomInput } from "@src/@types/react-hook-form";
 
 type Props<
   FormValues extends Record<string, string | undefined>
-> = InputHTMLAttributes<HTMLSelectElement> & {
-  options: string[];
-  register: (instance: HTMLSelectElement | null) => void;
-  errors: UseFormMethods["errors"];
-  name: keyof FormValues;
-  label?: string;
-  id: string;
-};
+> = InputHTMLAttributes<HTMLSelectElement> &
+  CustomInput<FormValues, HTMLSelectElement> & {
+    options: string[];
+    id: string;
+  };
 
 /**
  * @description renders a styled select element with options
@@ -63,6 +61,10 @@ function renderOptions(optionsData: string[]): ReactElement[] {
 
 type ContainerProps = {};
 const Container = styled.div<ContainerProps>`
+  :focus-within label {
+    color: ${(p) => p.theme.palette.text.primary};
+  }
+
   > *:not(:last-child) {
     margin-bottom: 0.5rem;
   }
@@ -82,6 +84,7 @@ const StyledSelect = styled.select<StyledSelectProps>`
   appearance: none;
   cursor: pointer;
   width: ${(p) => p.width ?? "9rem"};
+  outline: none;
 
   border-radius: ${(p) => p.theme.shape.borderRadius}px;
   border: 1px solid ${(p) => (p.hasError ? p.theme.palette.error.dark : "#000")};
@@ -110,7 +113,7 @@ type LabelProps = {
 const Label = styled.label<LabelProps>`
   display: block;
   color: ${(p) =>
-    p.hasError ? p.theme.palette.error.dark : p.theme.palette.text.primary};
+    p.hasError ? p.theme.palette.error.dark : p.theme.palette.common.black};
 `;
 
 export { Select };

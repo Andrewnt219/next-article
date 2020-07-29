@@ -10,6 +10,7 @@ import _ from "lodash";
 
 import { categoryNames, countryCodes } from "@src/data/newsApi.data";
 import { Select } from "@components/ui/form/Select";
+import { Range } from "@components/ui/form/Range";
 
 type Props = {
   onSubmit: (params: TopHeadlinesApiRequest) => void;
@@ -17,7 +18,7 @@ type Props = {
 };
 export type FilterFormValues = Pick<
   TopHeadlinesApiRequest,
-  "country" | "q" | "category"
+  "country" | "q" | "category" | "pageSize"
 > & {};
 
 /**
@@ -69,14 +70,14 @@ function FilterBoard({ onSubmit, isFetching }: Props): ReactElement {
           register={register}
         />
 
-        <input
-          type="range"
-          name="page-size"
+        <Range<FilterFormValues>
           min={20}
           max={100}
           step={5}
-          id="filter-page-size"
-          list="page-size-list"
+          name="pageSize"
+          register={register}
+          errors={errors}
+          label="Number of articles"
         />
 
         <SubmitButton
@@ -97,7 +98,8 @@ const Container = styled.div<ContainerProps>``;
 
 type FormProps = {};
 const Form = styled.form<FormProps>`
-  width: 25rem;
+  width: 80%;
+  max-width: 25rem;
 `;
 
 type RowProps = {};
