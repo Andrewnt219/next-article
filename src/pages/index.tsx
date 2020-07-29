@@ -69,7 +69,9 @@ const Home = ({
   const onFilterIconClicked = () => {
     setShowFilter((show) => !show);
   };
+
   const ref = useRef<HTMLDivElement>(null);
+
   useClickOutside(ref, () => setShowFilter(false));
 
   return (
