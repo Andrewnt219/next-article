@@ -1,4 +1,22 @@
-export default () => {};
+import Head from "next/head";
+
+import { MainLayout } from "../components/layout/MainLayout";
+
+const Menu = () => {
+  return (
+    <MainLayout>
+      <Head>
+        <title key="title">Menu | Dooee</title>
+        <meta
+          name="description"
+          content="Your personal dashboard, with your purchased courses, progress, achivement"
+        />
+      </Head>
+    </MainLayout>
+  );
+};
+
+export default Menu;
 
 // import Head from "next/head";
 

@@ -59,15 +59,19 @@ const Home = ({
   );
 };
 
+type ServerSideProps = {
+  data: TopHeadlinesApiResponse | string;
+};
+
 /**
  * @description fetch topheadlines
  * @returns topHeadlines or an error message
  */
-export const getServerSideProps: GetServerSideProps<{
-  data: TopHeadlinesApiResponse | string;
-}> = async () => {
+export const getServerSideProps: GetServerSideProps<ServerSideProps> = async (
+  context
+) => {
   const params: TopHeadlinesApiRequest = {
-    country: "ca",
+    ...context.query,
   };
   const data = await fetchTopHeadlines(params);
 

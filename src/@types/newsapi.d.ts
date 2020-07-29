@@ -27,17 +27,17 @@ export declare type TopHeadlinesApiRequest = {
    * 20 is the default,
    * 100 is the maximum.
    */
-  pageSize?: number;
+  pageSize?: string;
 
   /**
    * @description Use this to page through the results if the total results found is greater than the page size.
    */
-  page?: number;
+  page?: string;
 };
 
 export declare type TopHeadlinesApiResponse = {
   status: string;
-  totalResults: number;
+  totalResults: string;
   articles: Article[];
   source: Source;
   author: string;
@@ -110,12 +110,12 @@ export declare type EverythingApiRequest = {
    * @default 20
    * @max 100
    */
-  pageSize?: number;
+  pageSize?: string;
 
   /**
    * @description Use this to page through the results.
    */
-  page?: number;
+  page?: string;
 };
 
 export declare type NewsApiError = {
