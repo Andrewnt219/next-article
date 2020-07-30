@@ -5,12 +5,11 @@ import _ from "lodash";
 
 import { MainLayout } from "@components/layout/MainLayout";
 import {
-  Article,
   TopHeadlinesApiRequest,
   TopHeadlinesApiResponse,
 } from "@src/@types/newsapi";
 import { fetchTopHeadlines } from "@src/helpers/newsapi.helpers";
-import { ArticleCards } from "@components/homepage/ArticleCards";
+import { renderArticles } from "@components/homepage/ArticleCards";
 import { FilterBoard } from "@components/ui/FilterBoard";
 
 import { useRouter } from "next/router";
@@ -48,7 +47,7 @@ const Home = ({
   /* Filter form handling */
   const [showFilter, setShowFilter] = useState(false);
 
-  const onSubmit = async (params: TopHeadlinesApiRequest) => {
+  const onSubmit = (params: TopHeadlinesApiRequest) => {
     router.push({
       pathname: router.pathname,
       query: params,
@@ -90,9 +89,7 @@ const Home = ({
         )}
       </FilterContainer>
 
-      {typeof data === "string"
-        ? renderError(data)
-        : renderArticles(data.articles)}
+      {typeof data === "string" ? <p>{data}</p> : renderArticles(data.articles)}
     </MainLayout>
   );
 };
@@ -119,25 +116,6 @@ export const getServerSideProps: GetServerSideProps<ServerSideProps> = async (
     },
   };
 };
-
-/**
- * @description renders a list of headlines
- * @param data the data needs rendering
- */
-function renderArticles(
-  articles: TopHeadlinesApiResponse["articles"]
-): ReactElement {
-  const uniqueArticles = _.uniqBy(
-    articles,
-    (article: Article) => article.title
-  );
-
-  return <ArticleCards articles={uniqueArticles} />;
-}
-
-function renderError(message: string) {
-  return <p>{message}</p>;
-}
 
 type FilterContainerProps = {};
 const FilterContainer = styled.div<FilterContainerProps>`

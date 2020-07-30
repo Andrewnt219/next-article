@@ -54,7 +54,7 @@ export declare type TopHeadlinesApiResponse = {
   content: string;
 };
 
-export declare type EverythingApiResponse = TopHeadlinesApiRequest;
+export declare type EverythingApiResponse = TopHeadlinesApiResponse;
 
 export declare type EverythingApiRequest = {
   /**
@@ -63,7 +63,7 @@ export declare type EverythingApiRequest = {
    * @option Prepend words that must not appear with a - symbol. Eg: -bitcoin
    * @option Alternatively you can use the AND / OR / NOT keywords, and optionally group these with parenthesis. Eg: crypto AND (ethereum OR litecoin) NOT bitcoin.
    */
-  q: string;
+  q?: string;
   /**
    * @option Surround phrases with quotes (") for exact match.
    * @option Prepend words or phrases that must appear with a + symbol. Eg: +bitcoin

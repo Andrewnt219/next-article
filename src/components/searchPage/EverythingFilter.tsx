@@ -2,7 +2,7 @@ import { TextField } from "@components/ui/form/TextField";
 import React, { ReactElement } from "react";
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
-import { TopHeadlinesApiRequest } from "@src/@types/newsapi";
+import { EverythingApiRequest } from "@src/@types/newsapi";
 import _ from "lodash";
 
 import { categoryNames, countryCodes } from "@src/data/newsApi.data";
@@ -12,13 +12,13 @@ import { Button } from "@components/ui/Button";
 import { Row } from "@components/utils/Row";
 
 type Props = {
-  onSubmit: (params: TopHeadlinesApiRequest) => void;
+  onSubmit: (params: EverythingApiRequest) => void;
   isFetching: boolean;
 };
 
-export type TopHeadlinesFilters = Pick<
-  TopHeadlinesApiRequest,
-  "country" | "q" | "category" | "pageSize"
+export type EverythingFilters = Omit<
+  EverythingApiRequest,
+  "qInTitle" | "excludeDomains" | "page"
 > & {};
 
 /**
@@ -26,8 +26,8 @@ export type TopHeadlinesFilters = Pick<
  * @param onSubmit handle submit
  * @param isFetching is the article being fetched
  */
-function TopHeadlinesFilter({ onSubmit, isFetching }: Props): ReactElement {
-  const { handleSubmit, errors, register } = useForm<TopHeadlinesFilters>();
+function EverythingFilter({ onSubmit, isFetching }: Props): ReactElement {
+  const { handleSubmit, errors, register } = useForm<EverythingFilters>();
 
   const onFormSubmit = handleSubmit((data) => {
     const emptyFilteredData = _.omitBy(data, _.isEmpty);
@@ -38,20 +38,20 @@ function TopHeadlinesFilter({ onSubmit, isFetching }: Props): ReactElement {
   return (
     <Form onSubmit={onFormSubmit} noValidate>
       <Row justify="space-between">
-        <Select<TopHeadlinesFilters>
+        <Select<EverythingFilters>
           register={register}
-          name="category"
-          id="filter-category"
+          name="sortBy"
+          id="search_sortBy"
           errors={errors}
           options={categoryNames}
           label="Category"
           width="9.5rem"
         />
 
-        <Select<TopHeadlinesFilters>
+        <Select<EverythingFilters>
           register={register}
-          name="country"
-          id="filter-country"
+          name="language"
+          id="search_language"
           errors={errors}
           options={countryCodes}
           label="Country"
@@ -59,16 +59,16 @@ function TopHeadlinesFilter({ onSubmit, isFetching }: Props): ReactElement {
         />
       </Row>
 
-      <TextField<TopHeadlinesFilters>
+      <TextField<EverythingFilters>
         type="text"
-        id="filter_query"
+        id="search_query"
         label="Search Term"
         name="q"
         errors={errors}
         register={register}
       />
 
-      <Range<TopHeadlinesFilters>
+      <Range<EverythingFilters>
         min={20}
         max={100}
         step={5}
@@ -76,6 +76,7 @@ function TopHeadlinesFilter({ onSubmit, isFetching }: Props): ReactElement {
         register={register}
         errors={errors}
         label="Number of articles"
+        id="search_pageSize"
       />
 
       <Row justify="center">
@@ -104,4 +105,4 @@ function TopHeadlinesFilter({ onSubmit, isFetching }: Props): ReactElement {
 type FormProps = {};
 const Form = styled.form<FormProps>``;
 
-export { TopHeadlinesFilter };
+export { EverythingFilter };

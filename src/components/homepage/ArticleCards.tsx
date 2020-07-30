@@ -2,6 +2,7 @@ import { Article } from "@src/@types/newsapi";
 import React, { ReactElement } from "react";
 import styled from "styled-components";
 import { ArticleCard } from "./ArticleCard";
+import _ from "lodash";
 
 type Props = {
   articles: Article[];
@@ -33,6 +34,16 @@ function renderData(articles: Article[]): ReactElement | ReactElement[] {
       </li>
     );
   });
+}
+
+/**
+ * @description renders a list of headlines
+ * @param data the data needs rendering
+ */
+export function renderArticles(articles: Article[]): ReactElement {
+  const uniqueArticles = _.uniqBy(articles, (article) => article.title);
+
+  return <ArticleCards articles={uniqueArticles} />;
 }
 
 export { ArticleCards };
