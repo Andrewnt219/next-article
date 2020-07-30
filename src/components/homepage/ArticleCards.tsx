@@ -26,9 +26,9 @@ const Container = styled.ul<ContainerProps>`
  * @description renders a list of articles
  */
 function renderData(articles: Article[]): ReactElement | ReactElement[] {
-  return articles.map((article) => {
+  return articles.map((article, idx) => {
     return (
-      <li key={article.url + article.source.name}>
+      <li key={idx}>
         <ArticleCard article={article} />
       </li>
     );

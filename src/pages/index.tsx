@@ -1,4 +1,4 @@
-import React, { ReactElement, useRef, useState } from "react";
+import React, { ReactElement, useCallback, useRef, useState } from "react";
 import Head from "next/head";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 
@@ -10,12 +10,13 @@ import {
 import { fetchTopHeadlines } from "@src/helpers/newsapi.helpers";
 import { ArticleCards } from "@components/homepage/ArticleCards";
 import { FilterBoard } from "@components/homepage/FilterBoard";
-import Axios, { AxiosError } from "axios";
+
 import { useRouter } from "next/router";
 import FilterListIcon from "@material-ui/icons/FilterList";
 import IconButton from "@material-ui/core/IconButton";
 import styled from "styled-components";
 import { useClickOutside } from "@src/hooks/useClickOutside";
+import { useRouteChange, RouteChangeHandlers } from "@src/hooks/useRouteChange";
 
 /**
  * @description render te Homepage and fetch (filtered) topHeadlines
@@ -24,45 +25,31 @@ import { useClickOutside } from "@src/hooks/useClickOutside";
 const Home = ({
   data,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  /* Fetching data */
-  let fetchedArticles: TopHeadlinesApiResponse["articles"] | null = null;
-  let error: string | null = null;
-
-  if (typeof data !== "string") fetchedArticles = data.articles;
-  else error = data;
-
+  /* handle route change and data fetching */
   const [isFetchingArticles, setIsFetchingArticles] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(error);
-  const [articles, setArticles] = useState(fetchedArticles);
+  const router = useRouter();
+
+  const handleChangeComplete = useCallback(
+    () => setIsFetchingArticles(false),
+    []
+  );
+  const handleChangeStart = useCallback(() => setIsFetchingArticles(true), []);
+
+  const routeChangeHandlers: RouteChangeHandlers = {
+    handleChangeComplete,
+    handleChangeStart,
+    handleChangeError: handleChangeComplete,
+  };
+  useRouteChange(router, routeChangeHandlers);
 
   /* Filter form handling */
   const [showFilter, setShowFilter] = useState(false);
-  const router = useRouter();
+
   const onSubmit = async (params: TopHeadlinesApiRequest) => {
-    try {
-      setIsFetchingArticles(true);
-      const { data } = await Axios.get<TopHeadlinesApiResponse>(
-        "/api/topHeadlines",
-        {
-          params,
-        }
-      );
-
-      setArticles(data.articles);
-      setIsFetchingArticles(false);
-
-      // shallow renders the url
-      router.push(
-        {
-          pathname: router.pathname,
-          query: params,
-        },
-        undefined,
-        { shallow: true }
-      );
-    } catch (error) {
-      setErrorMessage((error as AxiosError).message);
-    }
+    router.push({
+      pathname: router.pathname,
+      query: params,
+    });
   };
 
   /* FilterBoard appear controller */
@@ -97,8 +84,9 @@ const Home = ({
         )}
       </FilterContainer>
 
-      {articles && renderArticles(articles)}
-      {errorMessage && renderError(errorMessage)}
+      {typeof data === "string"
+        ? renderError(data)
+        : renderArticles(data.articles)}
     </MainLayout>
   );
 };
