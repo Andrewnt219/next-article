@@ -44,20 +44,20 @@ export const allRoutes: Route[] = [
     text: "Home",
   },
   {
-    href: "/menu",
-    text: "Menu",
+    href: "/search",
+    text: "Search",
   },
   {
     href: "/about",
     text: "About",
   },
   {
-    href: "/cart",
-    text: "Cart",
-  },
-  {
     href: "/login",
     text: "Login",
+  },
+  {
+    href: "/signup",
+    text: "Sign Up",
   },
 ];
 
