@@ -1,9 +1,11 @@
 import React, { ReactElement, useCallback, useRef, useState } from "react";
 import Head from "next/head";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
+import _ from "lodash";
 
 import { MainLayout } from "@components/layout/MainLayout";
 import {
+  Article,
   TopHeadlinesApiRequest,
   TopHeadlinesApiResponse,
 } from "@src/@types/newsapi";
@@ -121,7 +123,11 @@ export const getServerSideProps: GetServerSideProps<ServerSideProps> = async (
 function renderArticles(
   articles: TopHeadlinesApiResponse["articles"]
 ): ReactElement | ReactElement[] {
-  return <ArticleCards articles={articles} />;
+  const uniqueArticles = _.uniqBy(
+    articles,
+    (article: Article) => article.title
+  );
+  return <ArticleCards articles={uniqueArticles} />;
 }
 
 function renderError(message: string) {
