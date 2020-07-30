@@ -108,7 +108,7 @@ export declare type EverythingApiRequest = {
    * @param publishedAt newest articles come first
    * @default publishedAt
    */
-  sortBy?: "relevancy" | "popularity" | "publishedAt";
+  sortBy?: SortOption;
 
   /**
    * @description The number of results to return per page
@@ -144,6 +144,8 @@ declare type Source = {
   id: SourceId | null;
   name: SourceName;
 };
+
+declare type SortOption = "relevancy" | "popularity" | "publishedAt";
 
 declare type Language =
   | "ar"

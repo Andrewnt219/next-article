@@ -1,57 +1,52 @@
+import _ from "lodash";
 import { renderArticles } from "@components/homepage/ArticleCards";
 import { EverythingFilter } from "@components/searchPage/EverythingFilter";
-import { FilterBoard } from "@components/ui/FilterBoard";
 import {
   Article,
   EverythingApiRequest,
   EverythingApiResponse,
 } from "@src/@types/newsapi";
-import { RouteChangeHandlers, useRouteChange } from "@src/hooks/useRouteChange";
 import Axios, { AxiosError } from "axios";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { useCallback, useState } from "react";
+import { useEffect, useState } from "react";
 
 import { MainLayout } from "../components/layout/MainLayout";
 
 const Search = () => {
+  /* handle data fetching */
   const [articles, setArticles] = useState<Article[] | null>(null);
-
-  /* handle route change and data fetching */
   const [error, setError] = useState<string | null>(null);
   const [isFetchingArticles, setIsFetchingArticles] = useState(false);
   const router = useRouter();
 
-  const handleChangeComplete = useCallback(
-    () => setIsFetchingArticles(false),
-    []
-  );
-  const handleChangeStart = useCallback(() => setIsFetchingArticles(true), []);
+  useEffect(() => {
+    const fetchArticles = async () => {
+      try {
+        setIsFetchingArticles(true);
 
-  const routeChangeHandlers: RouteChangeHandlers = {
-    handleChangeComplete,
-    handleChangeStart,
-    handleChangeError: handleChangeComplete,
-  };
-  useRouteChange(router, routeChangeHandlers);
+        const { data } = await Axios.get<EverythingApiResponse>(
+          "/api/everything",
+          {
+            params: router.query,
+          }
+        );
 
-  const onSubmit = async (params: EverythingApiRequest) => {
-    try {
-      setIsFetchingArticles(true);
-      const { data } = await Axios.get<EverythingApiResponse>(
-        "/api/everything",
-        {
-          params,
-        }
-      );
+        setArticles(data.articles);
+      } catch (error) {
+        setError((error as AxiosError).message);
+      } finally {
+        setIsFetchingArticles(false);
+      }
+    };
 
-      setArticles(data.articles);
-    } catch (error) {
-      setError((error as AxiosError).message);
-    } finally {
-      setIsFetchingArticles(false);
+    if (!_.isEmpty(router.query)) {
+      fetchArticles();
     }
+  }, [router.query]);
 
+  /* Handle submit queries */
+  const onSubmit = async (params: EverythingApiRequest) => {
     router.push(
       {
         pathname: router.pathname,
@@ -72,9 +67,7 @@ const Search = () => {
         />
       </Head>
 
-      <FilterBoard>
-        <EverythingFilter isFetching={isFetchingArticles} onSubmit={onSubmit} />
-      </FilterBoard>
+      <EverythingFilter isFetching={isFetchingArticles} onSubmit={onSubmit} />
 
       {articles && renderArticles(articles)}
       {error && <p>{error}</p>}

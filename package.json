@@ -33,6 +33,7 @@
     "nprogress": "^0.2.0",
     "polished": "^3.6.5",
     "react": "16.13.1",
+    "react-dnd": "^5.0.0",
     "react-dom": "16.13.1",
     "react-hook-form": "^6.0.6",
     "react-icons": "^3.10.0",
