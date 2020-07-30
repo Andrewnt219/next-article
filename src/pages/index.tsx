@@ -75,8 +75,9 @@ const Home = ({
 
       <FilterContainer ref={ref}>
         <IconButton aria-label="filter icon" onClick={onFilterIconClicked}>
-          <FilterListIcon />
+          <FilterListIcon fontSize="large" />
         </IconButton>
+        <Text>Filter</Text>
 
         {showFilter && (
           <CustomFilterBoard
@@ -138,13 +139,25 @@ function renderError(message: string) {
 type FilterContainerProps = {};
 const FilterContainer = styled.div<FilterContainerProps>`
   position: relative;
+  display: flex;
+  align-items: center;
+  color: #757575;
+
+  :hover {
+    color: #000;
+  }
+`;
+
+type TextProps = {};
+const Text = styled.span<TextProps>`
+  font-size: larger;
 `;
 
 type CustomFilterBoardProps = {};
 const CustomFilterBoard = styled(FilterBoard)<CustomFilterBoardProps>`
   position: absolute;
   left: 0;
-  top: 3.5rem;
+  top: 4.5rem;
   background: #fff;
   z-index: ${(p) => p.theme.zIndex.modal};
 `;
