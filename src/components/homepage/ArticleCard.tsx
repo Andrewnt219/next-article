@@ -1,6 +1,5 @@
-import { Loader } from "@components/ui/Loader";
 import { Article } from "@src/@types/newsapi";
-import React, { ReactElement, useState } from "react";
+import React, { ReactElement } from "react";
 import styled, { css } from "styled-components";
 
 type Props = {
@@ -20,19 +19,11 @@ function ArticleCard({ article }: Props): ReactElement {
     url,
     description,
   } = article;
-  const [imageIsLoading, setImageIsLoading] = useState(true);
 
   return (
     <Container>
-      {urlToImage && imageIsLoading && <CustomLoader size="4rem" />}
-
       {urlToImage ? (
-        <Image
-          src={urlToImage}
-          onLoad={() => setImageIsLoading(false)}
-          loading="lazy"
-          alt={title}
-        />
+        <Image src={urlToImage} loading="lazy" alt={title} />
       ) : (
         <Line />
       )}
@@ -135,14 +126,6 @@ const Image = styled.img<ImageProps>`
   height: 15rem;
 
   object-fit: contain;
-`;
-
-type CustomLoaderProps = {};
-const CustomLoader = styled(Loader)<CustomLoaderProps>`
-  position: absolute;
-  top: 20%;
-  left: 50%;
-  transform: translate(-50%, -20%);
 `;
 
 type ContentProps = {};
