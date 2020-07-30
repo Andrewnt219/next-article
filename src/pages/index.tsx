@@ -11,7 +11,7 @@ import {
 } from "@src/@types/newsapi";
 import { fetchTopHeadlines } from "@src/helpers/newsapi.helpers";
 import { ArticleCards } from "@components/homepage/ArticleCards";
-import { FilterBoard } from "@components/homepage/FilterBoard";
+import { FilterBoard } from "@components/ui/FilterBoard";
 
 import { useRouter } from "next/router";
 import FilterListIcon from "@material-ui/icons/FilterList";
@@ -19,6 +19,7 @@ import IconButton from "@material-ui/core/IconButton";
 import styled from "styled-components";
 import { useClickOutside } from "@src/hooks/useClickOutside";
 import { useRouteChange, RouteChangeHandlers } from "@src/hooks/useRouteChange";
+import { TopHeadlinesFilter } from "@components/homepage/TopHeadlinesFilter";
 
 /**
  * @description render te Homepage and fetch (filtered) topHeadlines
@@ -80,10 +81,12 @@ const Home = ({
         <Text>Filter</Text>
 
         {showFilter && (
-          <CustomFilterBoard
-            isFetching={isFetchingArticles}
-            onSubmit={onSubmit}
-          />
+          <CustomFilterBoard>
+            <TopHeadlinesFilter
+              isFetching={isFetchingArticles}
+              onSubmit={onSubmit}
+            />
+          </CustomFilterBoard>
         )}
       </FilterContainer>
 
