@@ -7,6 +7,11 @@ export type RouteChangeHandlers = {
   handleChangeError(error: { cancelled: boolean }, url: string): void;
 };
 
+/**
+ * @description register and unregister next router events on route changing
+ * @param router router from Nextjs
+ * @param handlers handlers on different route changing events
+ */
 export const useRouteChange = (
   router: NextRouter,
   {

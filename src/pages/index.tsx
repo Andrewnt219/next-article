@@ -117,16 +117,17 @@ export const getServerSideProps: GetServerSideProps<ServerSideProps> = async (
 };
 
 /**
- * @description renders a list of headlines or an error message
+ * @description renders a list of headlines
  * @param data the data needs rendering
  */
 function renderArticles(
   articles: TopHeadlinesApiResponse["articles"]
-): ReactElement | ReactElement[] {
+): ReactElement {
   const uniqueArticles = _.uniqBy(
     articles,
     (article: Article) => article.title
   );
+
   return <ArticleCards articles={uniqueArticles} />;
 }
 

@@ -1,5 +1,10 @@
 import { MutableRefObject, useEffect } from "react";
 
+/**
+ * @description invokes handler on click outside
+ * @param ref the "inside" element
+ * @param handler a callback to trigger on click "outside" of ref-ed element
+ */
 export function useClickOutside(
   ref: MutableRefObject<any>,
   handler: (event: Event) => void

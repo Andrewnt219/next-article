@@ -5,6 +5,10 @@ type Props = StyledLoaderProps & {
   className?: string;
 };
 
+/**
+ * @description renders a Loader
+ * @param className  for styled-components
+ */
 function Loader({ className, ...props }: Props): ReactElement {
   return (
     <Container className={className}>

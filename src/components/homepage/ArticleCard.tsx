@@ -7,6 +7,10 @@ type Props = {
   article: Article;
 };
 
+/**
+ * @description renders a card with summary of an article
+ * @param article an object contains data for an article
+ */
 function ArticleCard({ article }: Props): ReactElement {
   const {
     title,

@@ -9,6 +9,10 @@ import {
   TopHeadlinesApiResponse,
 } from "@src/@types/newsapi";
 
+/**
+ * @returns fetched articles from /top-headlines || an error message
+ * @param params eligible appended queries for /top-headlines request
+ */
 export const fetchTopHeadlines = async (
   params: TopHeadlinesApiRequest
 ): Promise<TopHeadlinesApiResponse | string> => {
@@ -26,6 +30,10 @@ export const fetchTopHeadlines = async (
   }
 };
 
+/**
+ * @returns fetched articles from /everything || an error message
+ * @param params eligible appended queries for /everything request
+ */
 export const fetchEverything = async (
   params: EverythingApiRequest
 ): Promise<EverythingApiResponse | string> => {
