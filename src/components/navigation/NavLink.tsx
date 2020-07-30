@@ -17,7 +17,8 @@ function NavLink({
   ...linkProps
 }: NavLinkProps): ReactElement {
   const router = useRouter();
-  const isActive = router.asPath === (linkProps.as ?? linkProps.href);
+
+  const isActive = router.pathname === (linkProps.as ?? linkProps.href);
 
   return (
     <NextLink {...linkProps} passHref>

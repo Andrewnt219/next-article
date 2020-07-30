@@ -98,7 +98,7 @@ type TitleProps = {};
 const Title = styled.h5<TitleProps>`
   font-size: larger;
   line-height: 2rem;
-  margin: 1rem 0;
+  margin-top: 1rem;
 
   color: ${(p) => p.theme.palette.common.black};
 
@@ -134,7 +134,7 @@ const Image = styled.img<ImageProps>`
   width: 100%;
   height: 15rem;
 
-  object-fit: cover;
+  object-fit: contain;
 `;
 
 type CustomLoaderProps = {};
@@ -156,6 +156,7 @@ const ArticleInfo = styled.span<ArticleInfoProps>`
   display: inline-block;
   padding: 0.5rem 1rem;
   margin-right: 1rem;
+  margin-top: 1rem;
 
   border: 1px solid #ccc;
   border-radius: 1rem;
