@@ -71,7 +71,7 @@ type InputContainerProps = {
 const InputContainer = styled.div<InputContainerProps>`
   position: relative;
   border-radius: ${(p) => p.theme.shape.borderRadius}px;
-  border: 1px solid ${(p) => (p.hasError ? p.theme.palette.error.dark : "#000")};
+  border: 1px solid ${(p) => (p.hasError ? p.theme.palette.error.main : "#000")};
   width: 100%;
 
   /* Smoothen the corners */
@@ -116,7 +116,7 @@ const Label = styled.label<LabelProps>`
   padding: 0 0.25rem;
 
   &&& {
-    color: ${(p) => p.hasError && p.theme.palette.error.dark};
+    color: ${(p) => p.hasError && p.theme.palette.error.main};
   }
 `;
 

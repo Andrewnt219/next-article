@@ -72,7 +72,7 @@ export default function AppBar({
               </IconButton>
             </Hidden>
 
-            <Logo height="1.5rem" />
+            <Logo isFullLogo height="70%" />
 
             <Hidden smDown implementation="css">
               <DesktopNavItems />

@@ -1,14 +1,17 @@
 import Link from "next/link";
 import styled from "styled-components";
-import LogoSvg from "../../../public/svg/dooee.svg";
+import LogoSvg from "../../../public/svg/next-article-logo.svg";
+import FullLogoSvg from "../../../public/svg/next-article-full-logo.svg";
 
-type Props = LogoWrapperProps & {};
+type Props = LogoWrapperProps & {
+  isFullLogo?: boolean;
+};
 
-export function Logo({ fill, ...styleProps }: Props) {
+export function Logo({ fill, isFullLogo, ...styleProps }: Props) {
   return (
     <Link href="/">
       <LogoWrapper style={{ ...styleProps }} fill={fill}>
-        <LogoSvg />
+        {isFullLogo ? <FullLogoSvg /> : <LogoSvg />}
       </LogoWrapper>
     </Link>
   );

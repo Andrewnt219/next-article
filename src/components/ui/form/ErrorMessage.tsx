@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const ErrorMessage = styled.p`
-  color: ${(p) => p.theme.palette.error.dark};
+  color: ${(p) => p.theme.palette.error.main};
   font-size: inherit;
 `;
 

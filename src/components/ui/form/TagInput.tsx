@@ -63,6 +63,7 @@ function TagInput<FormValues>({
 
       <input
         hidden
+        readOnly
         value={tags ? tags.join(",") : ""}
         name={name}
         id={id}

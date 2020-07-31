@@ -87,7 +87,7 @@ const StyledSelect = styled.select<StyledSelectProps>`
   outline: none;
 
   border-radius: ${(p) => p.theme.shape.borderRadius}px;
-  border: 1px solid ${(p) => (p.hasError ? p.theme.palette.error.dark : "#000")};
+  border: 1px solid ${(p) => (p.hasError ? p.theme.palette.error.main : "#000")};
   padding: 0.5rem;
 
   :focus {
@@ -113,7 +113,7 @@ type LabelProps = {
 const Label = styled.label<LabelProps>`
   display: block;
   color: ${(p) =>
-    p.hasError ? p.theme.palette.error.dark : p.theme.palette.common.black};
+    p.hasError ? p.theme.palette.error.main : p.theme.palette.common.black};
 `;
 
 export { Select };
