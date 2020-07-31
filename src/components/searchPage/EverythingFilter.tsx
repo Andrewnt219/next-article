@@ -54,6 +54,7 @@ function EverythingFilter({ onSubmit, isFetching }: Props): ReactElement {
       />
       <TagInput<EverythingFilters>
         name="sources"
+        placeholder="Sources"
         id="search_sources"
         label="Sources"
         register={register}

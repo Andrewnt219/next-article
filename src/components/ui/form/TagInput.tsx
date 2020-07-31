@@ -6,6 +6,8 @@ import React, {
   useState,
 } from "react";
 import styled from "styled-components";
+import { Tag } from "./Tag";
+import _ from "lodash";
 
 export const DelimiterKeycode: Record<"enter" | "comma", number> = {
   enter: 13,
@@ -28,9 +30,10 @@ function TagInput<FormValues>({
   options,
   register,
   label,
+  id,
   ...inputProps
 }: Props<FormValues>): ReactElement {
-  const { name, id } = inputProps;
+  const { name } = inputProps;
 
   const [tags, setTags] = useState<string[] | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -41,6 +44,7 @@ function TagInput<FormValues>({
       keyCode,
       currentTarget: { value },
     } = event;
+    const newTagValue = value.trim();
 
     if (isValidKeyPressed(keyCode)) {
       // prevent the delimiter appear
@@ -48,34 +52,43 @@ function TagInput<FormValues>({
 
       // add new value to tags list
       if (tags) {
-        const newTags = [...tags, value];
+        const newTags = _.compact(_.uniq([...tags, newTagValue]));
         setTags(newTags);
-      } else setTags([value]);
+      } else setTags([newTagValue]);
 
       // clear the input
       inputRef.current!.value = "";
     }
   };
 
+  const onTagDeleted = (deletedTagValue: string) => {
+    if (tags) {
+      const newTags = tags.filter((tag) => tag !== deletedTagValue);
+      setTags(newTags);
+    }
+  };
+
   return (
     <Container>
-      {tags && tags.map((tag) => <span>{tag}</span>)}
+      <InputContainer>
+        {tags &&
+          tags.map((tag) => (
+            <Tag key={tag} onClick={onTagDeleted}>
+              {tag}
+            </Tag>
+          ))}
 
-      <input
-        hidden
-        readOnly
-        value={tags ? tags.join(",") : ""}
-        name={name}
-        id={id}
-        ref={register}
-      />
+        <Input
+          {...inputProps}
+          onKeyDown={(e) => onKeyDown(e)}
+          list="datalist"
+          type="text"
+          ref={inputRef}
+        />
 
-      <input
-        onKeyDown={(e) => onKeyDown(e)}
-        list="datalist"
-        type="text"
-        ref={inputRef}
-      />
+        <Label htmlFor={id}>{label}</Label>
+      </InputContainer>
+
       <datalist id="datalist">
         {options.map(({ id, name }) => (
           <option key={id} value={id}>
@@ -83,6 +96,14 @@ function TagInput<FormValues>({
           </option>
         ))}
       </datalist>
+
+      <input
+        hidden
+        readOnly
+        value={tags ? tags.join(",") : ""}
+        name={name}
+        ref={register}
+      />
     </Container>
   );
 }
@@ -96,4 +117,58 @@ function isValidKeyPressed(keycode: number): boolean {
 type ContainerProps = {};
 const Container = styled.div<ContainerProps>``;
 
+type InputContainerProps = {};
+const InputContainer = styled.div<InputContainerProps>`
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  min-height: 5rem;
+
+  padding: 0 1.25rem 1rem 1.25rem;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  position: relative;
+
+  & > * {
+    margin-top: 1rem;
+
+    :not(:last-child) {
+      margin-right: 0.25rem;
+    }
+  }
+
+  :focus-within {
+    border-color: ${(p) => p.theme.palette.primary.main};
+
+    label {
+      background: #fff;
+      visibility: visible;
+      transform: translateY(-50%);
+    }
+  }
+`;
+
+type InputProps = {};
+const Input = styled.input<InputProps>`
+  border: none;
+  background: none;
+  outline: none;
+
+  height: ;
+`;
+
+type LabelProps = {};
+const Label = styled.label<LabelProps>`
+  position: absolute;
+  top: -1rem;
+  left: 1.25rem;
+
+  display: inline-block;
+  padding: 0 0.25rem;
+  pointer-events: none;
+  transition: all 200ms ease;
+  visibility: hidden;
+
+  color: ${(p) => p.theme.palette.text.primary};
+`;
 export { TagInput };

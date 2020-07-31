@@ -105,8 +105,8 @@ type LabelProps = {
 };
 const Label = styled.label<LabelProps>`
   /* Position the label */
-  left: 1rem;
   position: absolute;
+  left: 1rem;
   top: 0;
 
   /* Hide it by default */
