@@ -57,7 +57,7 @@ export default function Drawer({
   const drawerContent = (
     <>
       <div className={classes.toolbar}>
-        <Logo height="2rem" />
+        <Logo height="4rem" isFullLogo />
       </div>
       <Divider />
 

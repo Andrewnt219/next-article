@@ -24,7 +24,7 @@ function Form({
         </Hidden>
 
         <Hidden smDown implementation="css">
-          <Logo height="2rem" />
+          <Logo height="4rem" />
         </Hidden>
       </Header>
 
