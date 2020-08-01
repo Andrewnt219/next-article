@@ -93,7 +93,7 @@ function EverythingFilter({ onSubmit, isFetching }: Props): ReactElement {
       />
 
       <Button
-        color="secondary"
+        color="primary"
         onClick={() => setDropDownIsOpen((isOpen) => !isOpen)}
       >
         Advanced Search
@@ -178,7 +178,7 @@ function EverythingFilter({ onSubmit, isFetching }: Props): ReactElement {
         <Button
           variant="contained"
           type="submit"
-          color="secondary"
+          color="primary"
           disabled={isFetching || !isValid}
         >
           {isFetching ? "FETCHING..." : "SEARCH"}
@@ -186,11 +186,11 @@ function EverythingFilter({ onSubmit, isFetching }: Props): ReactElement {
 
         <Button
           variant="contained"
-          color="secondary"
+          color="primary"
           type="reset"
           disabled={isFetching}
         >
-          CLEAR FILTER
+          CLEAR
         </Button>
       </Row>
     </Form>

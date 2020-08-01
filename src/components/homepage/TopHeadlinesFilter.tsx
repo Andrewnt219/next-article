@@ -81,7 +81,7 @@ function TopHeadlinesFilter({ onSubmit, isFetching }: Props): ReactElement {
       <Row justify="center" gap="1rem">
         <Button
           variant="contained"
-          color="secondary"
+          color="primary"
           type="submit"
           disabled={isFetching}
         >
@@ -90,7 +90,7 @@ function TopHeadlinesFilter({ onSubmit, isFetching }: Props): ReactElement {
 
         <Button
           variant="contained"
-          color="secondary"
+          color="primary"
           type="reset"
           disabled={isFetching}
         >
