@@ -19,10 +19,16 @@ function DesktopNavItems({}: Props): ReactElement {
 
 type ContainerProps = {};
 const Container = styled.ul<ContainerProps>`
-  display: flex;
+  display: none;
 
-  & > *:not(:last-child) {
-    margin-right: 1rem;
+  @media screen and (min-width: ${(p) => p.theme.breakpoints.values.md}px) {
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+
+    & > *:not(:last-child) {
+      margin-right: 1rem;
+    }
   }
 `;
 

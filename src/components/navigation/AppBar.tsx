@@ -10,7 +10,6 @@ import { Logo } from "../ui/Logo";
 import Hidden from "@material-ui/core/Hidden";
 
 import { DesktopNavItems } from "./DesktopNavItems";
-import { SearchBar } from "../ui/SearchBar";
 import type { Theme } from "@material-ui/core/styles/createMuiTheme";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -24,11 +23,6 @@ const useStyles = makeStyles((theme: Theme) =>
       justifyContent: "center",
       [theme.breakpoints.up("md")]: {
         justifyContent: "flex-start",
-      },
-      "& > :last-child": {
-        flex: 1,
-        display: "flex",
-        justifyContent: "flex-end",
       },
     },
     appbar: {
@@ -75,9 +69,7 @@ export default function AppBar({
 
             <Logo isFullLogo height="70%" />
 
-            <Hidden smDown implementation="css">
-              <DesktopNavItems />
-            </Hidden>
+            <DesktopNavItems />
           </Toolbar>
         </MuiAppBar>
       </ElevationScroll>
