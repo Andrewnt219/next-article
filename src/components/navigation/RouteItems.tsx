@@ -51,14 +51,6 @@ export const allRoutes: Route[] = [
     href: "/about",
     text: "About",
   },
-  {
-    href: "/login",
-    text: "Login",
-  },
-  {
-    href: "/signup",
-    text: "Sign Up",
-  },
 ];
 
 export { RouteItems };
