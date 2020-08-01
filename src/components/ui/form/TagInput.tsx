@@ -127,7 +127,7 @@ const InputContainer = styled.div<InputContainerProps>`
   min-height: 5rem;
 
   padding: 0 1.25rem 1rem 1.25rem;
-  border: 1px solid transparent;
+  border: 1px solid #e2e2e2;
   border-radius: 4px;
   position: relative;
 

@@ -86,7 +86,8 @@ const StyledSelect = styled.select<StyledSelectProps>`
   outline: none;
 
   border-radius: ${(p) => p.theme.shape.borderRadius}px;
-  border: 1px solid ${(p) => (p.hasError ? p.theme.palette.error.main : "#000")};
+  border: 1px solid
+    ${(p) => (p.hasError ? p.theme.palette.error.main : "#e2e2e2")};
   padding: 0.5rem;
 
   :focus {

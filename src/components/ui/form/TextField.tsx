@@ -71,7 +71,8 @@ type InputContainerProps = {
 const InputContainer = styled.div<InputContainerProps>`
   position: relative;
   border-radius: ${(p) => p.theme.shape.borderRadius}px;
-  border: 1px solid ${(p) => (p.hasError ? p.theme.palette.error.main : "#000")};
+  border: 1px solid
+    ${(p) => (p.hasError ? p.theme.palette.error.main : "#e2e2e2")};
   width: 100%;
 
   /* Smoothen the corners */
