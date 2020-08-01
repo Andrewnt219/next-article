@@ -25,6 +25,11 @@ const useStyles = makeStyles((theme: Theme) =>
       [theme.breakpoints.up("md")]: {
         justifyContent: "flex-start",
       },
+      "& > :last-child": {
+        flex: 1,
+        display: "flex",
+        justifyContent: "flex-end",
+      },
     },
     appbar: {
       background: theme.palette.common.white,
@@ -51,10 +56,6 @@ export default function AppBar({
 }: AppBarProps): ReactElement {
   const classes = useStyles();
 
-  const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-  };
-
   return (
     <>
       <ElevationScroll>
@@ -76,10 +77,6 @@ export default function AppBar({
 
             <Hidden smDown implementation="css">
               <DesktopNavItems />
-            </Hidden>
-
-            <Hidden smDown implementation="css">
-              <SearchBar handleSubmit={handleSearchSubmit} />
             </Hidden>
           </Toolbar>
         </MuiAppBar>
