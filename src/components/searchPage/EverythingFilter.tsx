@@ -92,46 +92,6 @@ function EverythingFilter({ onSubmit, isFetching }: Props): ReactElement {
         register={register({ required: "Search Term is required!" })}
       />
 
-      <TagInput<EverythingFilters>
-        name="sources"
-        placeholder="Sources"
-        id="search_sources"
-        label="Sources"
-        register={register}
-        errors={errors}
-        options={sources}
-      />
-
-      <TagInput<EverythingFilters>
-        name="domains"
-        placeholder="Domains (e.g. bbc.co.uk)"
-        id="search_domains"
-        label="Domains"
-        register={register}
-        errors={errors}
-        autoComplete="off"
-      />
-
-      <MuiPickersUtilsProvider utils={DateFnsUtils}>
-        <Row gap="1rem">
-          <CustomDatePicker
-            {...datePickerConfig}
-            value={fromDate}
-            onChange={onFromDateChange}
-            name="from"
-            label="From"
-          />
-
-          <CustomDatePicker
-            {...datePickerConfig}
-            value={toDate}
-            onChange={onToDateChange}
-            name="to"
-            label="To"
-          />
-        </Row>
-      </MuiPickersUtilsProvider>
-
       <Button
         color="secondary"
         onClick={() => setDropDownIsOpen((isOpen) => !isOpen)}
@@ -140,6 +100,46 @@ function EverythingFilter({ onSubmit, isFetching }: Props): ReactElement {
       </Button>
 
       <DropDown isActive={dropDownIsOpen}>
+        <TagInput<EverythingFilters>
+          name="sources"
+          placeholder="Sources"
+          id="search_sources"
+          label="Sources"
+          register={register}
+          errors={errors}
+          options={sources}
+        />
+
+        <TagInput<EverythingFilters>
+          name="domains"
+          placeholder="Domains (e.g. bbc.co.uk)"
+          id="search_domains"
+          label="Domains"
+          register={register}
+          errors={errors}
+          autoComplete="off"
+        />
+
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+          <Row gap="1rem">
+            <CustomDatePicker
+              {...datePickerConfig}
+              value={fromDate}
+              onChange={onFromDateChange}
+              name="from"
+              label="From"
+            />
+
+            <CustomDatePicker
+              {...datePickerConfig}
+              value={toDate}
+              onChange={onToDateChange}
+              name="to"
+              label="To"
+            />
+          </Row>
+        </MuiPickersUtilsProvider>
+
         <Row gap="1rem">
           <Select<EverythingFilters>
             register={register}
@@ -229,6 +229,10 @@ const DropDown = styled.div<DropDownProps>`
     p.isActive &&
     css`
       display: block;
+
+      & > *:not(:last-child) {
+        margin-bottom: 1rem;
+      }
     `}
 `;
 

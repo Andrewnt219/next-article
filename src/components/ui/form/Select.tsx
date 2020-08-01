@@ -45,7 +45,7 @@ function Select<FormValues extends Record<string, string | undefined>>({
         <DropDownArrow />
       </SelectContainer>
 
-      <ErrorMessage>{errors[name]?.message}&nbsp;</ErrorMessage>
+      <ErrorMessage>{errors[name]?.message}</ErrorMessage>
     </Container>
   );
 }

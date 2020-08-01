@@ -53,7 +53,7 @@ function TextField<FormValues>({
 
       {description && <Description>{description}</Description>}
 
-      <ErrorMessage>{errors[name]?.message}&nbsp;</ErrorMessage>
+      <ErrorMessage>{errors[name]?.message}</ErrorMessage>
     </Container>
   );
 }
