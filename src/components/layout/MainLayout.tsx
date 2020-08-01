@@ -9,7 +9,7 @@ type Props = {
 };
 
 const APPBAR_HEIGHT = "5rem";
-const FOOTER_HEIGHT = "20rem";
+const FOOTER_HEIGHT = "25rem";
 const DRAWER_WIDTH = 240;
 
 function MainLayout({ children }: Props): ReactElement {

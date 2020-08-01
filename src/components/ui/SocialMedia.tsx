@@ -22,8 +22,8 @@ const Container = styled.span<ContainerProps>`
   display: inline-block;
 
   background-color: #fff;
-  width: 1.5em;
-  height: 1.5em;
+  width: 2.5rem;
+  height: 2.5rem;
   border-radius: ${(p) => p.theme.shape.borderRadius}px;
 
   position: relative;
@@ -33,6 +33,8 @@ const Container = styled.span<ContainerProps>`
     fill: ${(p) => p.fillColor};
     position: relative;
     z-index: ${(p) => p.theme.zIndex.tooltip};
+    height: 100%;
+    width: 100%;
   }
 
   a {

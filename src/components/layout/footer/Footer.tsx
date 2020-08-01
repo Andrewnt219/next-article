@@ -2,6 +2,7 @@ import React, { ReactElement } from "react";
 import styled from "styled-components";
 import { Logo } from "../../ui/Logo";
 import { FooterMenu } from "./FooterMenu";
+import { SocialMedias } from "./SocialMedias";
 
 type Props = {
   height: string;
@@ -13,10 +14,26 @@ function Footer({ height }: Props): ReactElement {
       <FooterMenu />
 
       <SubContainer>
-        <Logo height="2rem" fill="white" />
+        <Logo height="5rem" />
 
-        <Text>Copyright © 2020, Inc. All rights reserved.</Text>
+        <Text>
+          Made by Tuan Phong (Andrew) Nguyen with{" "}
+          <span role="img" aria-label="heart">
+            💗
+          </span>
+        </Text>
+
+        <Text>
+          Powered by{" "}
+          <a
+            style={{ color: "#fff", textDecoration: "underline" }}
+            href="https://newsapi.org/"
+          >
+            NewsApi
+          </a>
+        </Text>
       </SubContainer>
+      <SocialMedias />
     </Container>
   );
 }
@@ -37,6 +54,10 @@ const Container = styled.footer<ContainerProps>`
   align-items: center;
 
   color: ${(p) => p.theme.palette.common.white};
+
+  & > *:not(:last-child) {
+    margin-bottom: 1rem;
+  }
 `;
 
 const SubContainer = styled.div`

@@ -6,7 +6,7 @@ import FacebookIcon from "@material-ui/icons/Facebook";
 import { SocialMedia } from "../../ui/SocialMedia";
 
 type Props = {};
-function SocialMedias({}: Props): ReactElement {
+function SocialMedias(): ReactElement {
   return (
     <Container>
       <SocialMedia href="#" fillColor="#6f42c1">
