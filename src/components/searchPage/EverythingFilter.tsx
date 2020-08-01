@@ -70,8 +70,8 @@ function EverythingFilter({ onSubmit, isFetching }: Props): ReactElement {
     clearable: true,
   };
 
-  const [fromDate, setFromDate] = React.useState<Date | null>(null);
-  const [toDate, setToDate] = useState<Date | null>(null);
+  const [fromDate, setFromDate] = React.useState<Date | null>(new Date());
+  const [toDate, setToDate] = useState<Date | null>(new Date());
 
   const onFromDateChange = (date: Date | null) => {
     setFromDate(date);
@@ -100,28 +100,8 @@ function EverythingFilter({ onSubmit, isFetching }: Props): ReactElement {
       </Button>
 
       <DropDown isActive={dropDownIsOpen}>
-        <TagInput<EverythingFilters>
-          name="sources"
-          placeholder="Sources"
-          id="search_sources"
-          label="Sources"
-          register={register}
-          errors={errors}
-          options={sources}
-        />
-
-        <TagInput<EverythingFilters>
-          name="domains"
-          placeholder="Domains (e.g. bbc.co.uk)"
-          id="search_domains"
-          label="Domains"
-          register={register}
-          errors={errors}
-          autoComplete="off"
-        />
-
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
-          <Row gap="1rem">
+          <Row gap="2rem">
             <CustomDatePicker
               {...datePickerConfig}
               value={fromDate}
@@ -140,7 +120,7 @@ function EverythingFilter({ onSubmit, isFetching }: Props): ReactElement {
           </Row>
         </MuiPickersUtilsProvider>
 
-        <Row gap="1rem">
+        <Row gap="2rem">
           <Select<EverythingFilters>
             register={register}
             name="sortBy"
@@ -160,23 +140,43 @@ function EverythingFilter({ onSubmit, isFetching }: Props): ReactElement {
             label="Language"
             width="3.5rem"
           />
+
+          <Range<EverythingFilters>
+            min={20}
+            max={100}
+            step={5}
+            name="pageSize"
+            register={register}
+            errors={errors}
+            label="Number of articles"
+            id="search_pageSize"
+          />
         </Row>
 
-        <Range<EverythingFilters>
-          min={20}
-          max={100}
-          step={5}
-          name="pageSize"
+        <TagInput<EverythingFilters>
+          name="sources"
+          placeholder="Sources"
+          id="search_sources"
+          label="Sources"
           register={register}
           errors={errors}
-          label="Number of articles"
-          id="search_pageSize"
+          options={sources}
+        />
+
+        <TagInput<EverythingFilters>
+          name="domains"
+          placeholder="Domains (e.g. bbc.co.uk)"
+          id="search_domains"
+          label="Domains"
+          register={register}
+          errors={errors}
+          autoComplete="off"
         />
       </DropDown>
 
-      <Row>
+      <Row gap="2rem">
         <Button
-          variant="text"
+          variant="contained"
           type="submit"
           color="secondary"
           disabled={isFetching || !isValid}
@@ -185,7 +185,7 @@ function EverythingFilter({ onSubmit, isFetching }: Props): ReactElement {
         </Button>
 
         <Button
-          variant="text"
+          variant="contained"
           color="secondary"
           type="reset"
           disabled={isFetching}
@@ -201,6 +201,10 @@ type FormProps = {};
 const Form = styled.form<FormProps>`
   & > *:not(:last-child) {
     margin-bottom: 1rem;
+  }
+
+  & > :last-child {
+    margin-top: 2rem;
   }
 `;
 

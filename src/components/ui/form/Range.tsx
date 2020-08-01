@@ -37,7 +37,7 @@ function Range<FormValues>({
         value={value}
       />
 
-      <ErrorMessage>{errors[name]?.message}</ErrorMessage>
+      {hasError && <ErrorMessage>{errors[name]?.message}</ErrorMessage>}
     </Container>
   );
 }

@@ -12,6 +12,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 import { MainLayout } from "../components/layout/MainLayout";
+import styled from "styled-components";
 
 const Search = () => {
   /* handle data fetching */
@@ -57,6 +58,9 @@ const Search = () => {
     );
   };
 
+  /* UI */
+  const searchTerm = router.query.q;
+
   return (
     <MainLayout>
       <Head>
@@ -67,12 +71,27 @@ const Search = () => {
         />
       </Head>
 
-      <EverythingFilter isFetching={isFetchingArticles} onSubmit={onSubmit} />
+      <FilterContainer>
+        <EverythingFilter isFetching={isFetchingArticles} onSubmit={onSubmit} />
+      </FilterContainer>
 
+      {searchTerm && <Heading>Result for "{searchTerm}"</Heading>}
       {articles && renderArticles(articles)}
       {error && <p>{error}</p>}
     </MainLayout>
   );
 };
+
+type FilterContainerProps = {};
+const FilterContainer = styled.div<FilterContainerProps>`
+  width: 80%;
+  margin: 0 auto;
+  padding: 2rem 2rem 3rem 2rem;
+`;
+
+type HeadingProps = {};
+const Heading = styled.h1<HeadingProps>`
+  margin-bottom: 2rem;
+`;
 
 export default Search;
