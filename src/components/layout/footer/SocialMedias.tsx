@@ -9,15 +9,27 @@ type Props = {};
 function SocialMedias(): ReactElement {
   return (
     <Container>
-      <SocialMedia href="#" fillColor="#6f42c1">
+      <SocialMedia
+        href="https://github.com/Andrewnt219"
+        fillColor="#6f42c1"
+        ariaLabel="Link to GitHub"
+      >
         <GitHubIcon />
       </SocialMedia>
 
-      <SocialMedia href="#" fillColor="#0E76A8">
+      <SocialMedia
+        href="https://www.linkedin.com/in/andrewnt219/"
+        fillColor="#0E76A8"
+        ariaLabel="Link to LinkedIn"
+      >
         <LinkedInIcon />
       </SocialMedia>
 
-      <SocialMedia href="#" fillColor="#3B5998">
+      <SocialMedia
+        href="https://www.facebook.com/phong.nguyentuan.108"
+        fillColor="#3B5998"
+        ariaLabel="Link to Facebook"
+      >
         <FacebookIcon />
       </SocialMedia>
     </Container>

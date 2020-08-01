@@ -4,12 +4,25 @@ import styled from "styled-components";
 type Props = ContainerProps & {
   children: ReactElement;
   href: string;
+  ariaLabel: string;
 };
 
-function SocialMedia({ children, href, fillColor }: Props): ReactElement {
+function SocialMedia({
+  children,
+  href,
+  fillColor,
+  ariaLabel,
+}: Props): ReactElement {
   return (
     <Container fillColor={fillColor}>
-      <a href={href}>{children}</a>
+      <a
+        href={href}
+        target="_blank"
+        rel="noreferrer noopener"
+        aria-label={ariaLabel}
+      >
+        {children}
+      </a>
       <Filter />
     </Container>
   );

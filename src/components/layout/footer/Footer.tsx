@@ -27,6 +27,8 @@ function Footer({ height }: Props): ReactElement {
           Powered by{" "}
           <a
             style={{ color: "#fff", textDecoration: "underline" }}
+            target="_blank"
+            rel="noreferrer noopener"
             href="https://newsapi.org/"
           >
             NewsApi
