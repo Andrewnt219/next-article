@@ -1,4 +1,4 @@
-import React, { ReactElement, useCallback, useRef, useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import Head from "next/head";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import _ from "lodash";

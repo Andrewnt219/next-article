@@ -78,10 +78,10 @@ function TopHeadlinesFilter({ onSubmit, isFetching }: Props): ReactElement {
         label="Number of articles"
       />
 
-      <Row justify="center">
+      <Row justify="center" gap="1rem">
         <Button
-          variant="text"
-          color="primary"
+          variant="contained"
+          color="secondary"
           type="submit"
           disabled={isFetching}
         >
@@ -89,8 +89,8 @@ function TopHeadlinesFilter({ onSubmit, isFetching }: Props): ReactElement {
         </Button>
 
         <Button
-          variant="text"
-          color="primary"
+          variant="contained"
+          color="secondary"
           type="reset"
           disabled={isFetching}
         >
@@ -102,6 +102,14 @@ function TopHeadlinesFilter({ onSubmit, isFetching }: Props): ReactElement {
 }
 
 type FormProps = {};
-const Form = styled.form<FormProps>``;
+const Form = styled.form<FormProps>`
+  & > *:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+
+  & > :last-child {
+    margin-top: 2rem;
+  }
+`;
 
 export { TopHeadlinesFilter };
