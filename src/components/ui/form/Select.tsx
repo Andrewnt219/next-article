@@ -1,5 +1,4 @@
 import React, { InputHTMLAttributes, ReactElement } from "react";
-import { UseFormMethods } from "react-hook-form";
 import styled from "styled-components";
 import { ErrorMessage } from "./ErrorMessage";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";

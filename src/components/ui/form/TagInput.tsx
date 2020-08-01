@@ -19,7 +19,7 @@ type Option = {
 };
 type Props<FormValues> = CustomInput<FormValues> &
   InputHTMLAttributes<HTMLInputElement> & {
-    options: Option[];
+    options?: Option[];
   };
 
 /**
@@ -89,13 +89,15 @@ function TagInput<FormValues>({
         <Label htmlFor={id}>{label}</Label>
       </InputContainer>
 
-      <datalist id="datalist">
-        {options.map(({ id, name }) => (
-          <option key={id} value={id}>
-            {name}
-          </option>
-        ))}
-      </datalist>
+      {options && (
+        <datalist id="datalist">
+          {options.map(({ id, name }) => (
+            <option key={id} value={id}>
+              {name}
+            </option>
+          ))}
+        </datalist>
+      )}
 
       <input
         hidden
@@ -153,8 +155,6 @@ const Input = styled.input<InputProps>`
   border: none;
   background: none;
   outline: none;
-
-  height: ;
 `;
 
 type LabelProps = {};
