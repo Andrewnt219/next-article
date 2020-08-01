@@ -2,9 +2,8 @@ import { HYDRATE, createWrapper, MakeStore } from "next-redux-wrapper";
 import { configureStore } from "@reduxjs/toolkit";
 import type { ThunkAction, Action } from "@reduxjs/toolkit";
 import { AnyAction, combineReducers, Reducer } from "redux";
-import auth from "../features/authSlice";
 
-const combinedReducer = combineReducers({ auth });
+const combinedReducer = combineReducers({});
 
 export type RootState = ReturnType<typeof combinedReducer>;
 type HydratedReducer = Reducer<RootState, AnyAction>;
