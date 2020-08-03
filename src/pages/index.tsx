@@ -19,6 +19,7 @@ import styled from "styled-components";
 import { useClickOutside } from "@src/hooks/useClickOutside";
 import { useRouteChange, RouteChangeHandlers } from "@src/hooks/useRouteChange";
 import { TopHeadlinesFilter } from "@components/homepage/TopHeadlinesFilter";
+import { AnimatePresence } from "framer-motion";
 
 /**
  * @description render te Homepage and fetch (filtered) topHeadlines
@@ -79,14 +80,16 @@ const Home = ({
         </IconButton>
         <Text>Filter</Text>
 
-        {showFilter && (
-          <CustomFilterBoard>
-            <TopHeadlinesFilter
-              isFetching={isFetchingArticles}
-              onSubmit={onSubmit}
-            />
-          </CustomFilterBoard>
-        )}
+        <AnimatePresence>
+          {showFilter && (
+            <CustomFilterBoard>
+              <TopHeadlinesFilter
+                isFetching={isFetchingArticles}
+                onSubmit={onSubmit}
+              />
+            </CustomFilterBoard>
+          )}
+        </AnimatePresence>
       </FilterContainer>
 
       {typeof data === "string" ? <p>{data}</p> : renderArticles(data.articles)}

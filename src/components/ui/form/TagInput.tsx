@@ -8,6 +8,7 @@ import React, {
 import styled from "styled-components";
 import { Tag } from "./Tag";
 import _ from "lodash";
+import { AnimatePresence } from "framer-motion";
 
 export const DelimiterKeycode: Record<"enter" | "comma", number> = {
   enter: 13,
@@ -71,13 +72,14 @@ function TagInput<FormValues>({
   return (
     <Container>
       <InputContainer>
-        {tags &&
-          tags.map((tag) => (
-            <Tag key={tag} onClick={onTagDeleted}>
-              {tag}
-            </Tag>
-          ))}
-
+        <AnimatePresence>
+          {tags &&
+            tags.map((tag) => (
+              <Tag key={tag} onClick={onTagDeleted}>
+                {tag}
+              </Tag>
+            ))}
+        </AnimatePresence>
         <Input
           {...inputProps}
           onKeyDown={(e) => onKeyDown(e)}

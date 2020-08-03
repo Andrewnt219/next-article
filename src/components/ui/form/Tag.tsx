@@ -1,6 +1,7 @@
 import React, { ReactElement, ReactNode } from "react";
 import styled from "styled-components";
 import CloseIcon from "@material-ui/icons/Close";
+import { motion } from "framer-motion";
 
 type Props = {
   children: string;
@@ -13,7 +14,16 @@ function Tag({ children, onClick }: Props): ReactElement {
   };
 
   return (
-    <Container>
+    <Container
+      key={children}
+      initial={{ scale: 0.5 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0.5 }}
+      transition={{
+        scale: { type: "spring", stiffness: 200 },
+        opacity: { type: "tween", duration: 0.15 },
+      }}
+    >
       {children}
       <IconWrapper onClick={onCrossClicked}>
         <CloseIcon aria-label="remove-tag" />
@@ -23,7 +33,7 @@ function Tag({ children, onClick }: Props): ReactElement {
 }
 
 type ContainerProps = {};
-const Container = styled.span<ContainerProps>`
+const Container = styled(motion.span)<ContainerProps>`
   background: ${(p) => p.theme.palette.text.primary};
   display: inline-block;
   padding: 0.5rem 1rem;

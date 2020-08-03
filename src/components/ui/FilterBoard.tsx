@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import React, { ReactElement } from "react";
 import styled from "styled-components";
 
@@ -12,11 +13,20 @@ type Props = {
  * @param children a form elements with inputs
  */
 function FilterBoard({ children, className }: Props): ReactElement {
-  return <Container className={className}>{children}</Container>;
+  return (
+    <Container
+      initial={{ y: -15, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      exit={{ y: -5, opacity: 0 }}
+      className={className}
+    >
+      {children}
+    </Container>
+  );
 }
 
 type ContainerProps = {};
-const Container = styled.div<ContainerProps>`
+const Container = styled(motion.div)<ContainerProps>`
   width: 100%;
   max-width: 35rem;
   padding: 2rem 2rem 3rem 2rem;

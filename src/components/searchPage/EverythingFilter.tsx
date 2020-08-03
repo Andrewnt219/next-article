@@ -18,6 +18,7 @@ import { Range } from "@components/ui/form/Range";
 import { Button } from "@components/ui/Button";
 import { Row } from "@components/utils/Row";
 import { TagInput } from "@components/ui/form/TagInput";
+import { AnimatePresence, motion } from "framer-motion";
 
 type Props = {
   onSubmit: (params: EverythingApiRequest) => void;
@@ -99,80 +100,88 @@ function EverythingFilter({ onSubmit, isFetching }: Props): ReactElement {
         Advanced Search
       </Button>
 
-      <DropDown isActive={dropDownIsOpen}>
-        <MuiPickersUtilsProvider utils={DateFnsUtils}>
-          <Row gap="2rem">
-            <CustomDatePicker
-              {...datePickerConfig}
-              value={fromDate}
-              onChange={onFromDateChange}
-              name="from"
-              label="From"
+      <AnimatePresence>
+        {dropDownIsOpen && (
+          <DropDown
+            initial={{ y: -15, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: -5, opacity: 0 }}
+          >
+            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              <Row gap="2rem">
+                <CustomDatePicker
+                  {...datePickerConfig}
+                  value={fromDate}
+                  onChange={onFromDateChange}
+                  name="from"
+                  label="From"
+                />
+
+                <CustomDatePicker
+                  {...datePickerConfig}
+                  value={toDate}
+                  onChange={onToDateChange}
+                  name="to"
+                  label="To"
+                />
+              </Row>
+            </MuiPickersUtilsProvider>
+
+            <Row gap="2rem">
+              <Select<EverythingFilters>
+                register={register}
+                name="sortBy"
+                id="search_sortBy"
+                errors={errors}
+                options={sortOptions}
+                label="Sort By"
+                width="7.5rem"
+              />
+
+              <Select<EverythingFilters>
+                register={register}
+                name="language"
+                id="search_language"
+                errors={errors}
+                options={languages}
+                label="Language"
+                width="3.5rem"
+              />
+
+              <Range<EverythingFilters>
+                min={20}
+                max={100}
+                step={5}
+                name="pageSize"
+                register={register}
+                errors={errors}
+                label="Number of articles"
+                id="search_pageSize"
+              />
+            </Row>
+
+            <TagInput<EverythingFilters>
+              name="sources"
+              placeholder="Sources"
+              id="search_sources"
+              label="Sources"
+              register={register}
+              errors={errors}
+              options={sources}
             />
 
-            <CustomDatePicker
-              {...datePickerConfig}
-              value={toDate}
-              onChange={onToDateChange}
-              name="to"
-              label="To"
+            <TagInput<EverythingFilters>
+              name="domains"
+              placeholder="Domains (e.g. bbc.co.uk)"
+              id="search_domains"
+              label="Domains"
+              register={register}
+              errors={errors}
+              autoComplete="off"
             />
-          </Row>
-        </MuiPickersUtilsProvider>
-
-        <Row gap="2rem">
-          <Select<EverythingFilters>
-            register={register}
-            name="sortBy"
-            id="search_sortBy"
-            errors={errors}
-            options={sortOptions}
-            label="Sort By"
-            width="7.5rem"
-          />
-
-          <Select<EverythingFilters>
-            register={register}
-            name="language"
-            id="search_language"
-            errors={errors}
-            options={languages}
-            label="Language"
-            width="3.5rem"
-          />
-
-          <Range<EverythingFilters>
-            min={20}
-            max={100}
-            step={5}
-            name="pageSize"
-            register={register}
-            errors={errors}
-            label="Number of articles"
-            id="search_pageSize"
-          />
-        </Row>
-
-        <TagInput<EverythingFilters>
-          name="sources"
-          placeholder="Sources"
-          id="search_sources"
-          label="Sources"
-          register={register}
-          errors={errors}
-          options={sources}
-        />
-
-        <TagInput<EverythingFilters>
-          name="domains"
-          placeholder="Domains (e.g. bbc.co.uk)"
-          id="search_domains"
-          label="Domains"
-          register={register}
-          errors={errors}
-          autoComplete="off"
-        />
-      </DropDown>
+          </DropDown>
+        )}
+      </AnimatePresence>
 
       <Row gap="2rem">
         <Button
@@ -223,21 +232,13 @@ const CustomDatePicker = styled(DatePicker)<CustomDatePickerProps>`
   }
 `;
 
-type DropDownProps = {
-  isActive: boolean;
-};
-const DropDown = styled.div<DropDownProps>`
-  display: none;
+type DropDownProps = {};
+const DropDown = styled(motion.div)<DropDownProps>`
+  display: block;
 
-  ${(p) =>
-    p.isActive &&
-    css`
-      display: block;
-
-      & > *:not(:last-child) {
-        margin-bottom: 1rem;
-      }
-    `}
+  & > *:not(:last-child) {
+    margin-bottom: 1rem;
+  }
 `;
 
 export { EverythingFilter };
