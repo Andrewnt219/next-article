@@ -17,7 +17,7 @@ import styled from "styled-components";
 const Search = () => {
   /* handle data fetching */
   const [articles, setArticles] = useState<Article[] | null>(null);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<AxiosError | null>(null);
   const [isFetchingArticles, setIsFetchingArticles] = useState(false);
   const router = useRouter();
 
@@ -35,7 +35,7 @@ const Search = () => {
 
         setArticles(data.articles);
       } catch (error) {
-        setError((error as AxiosError).message);
+        setError(error as AxiosError);
       } finally {
         setIsFetchingArticles(false);
       }
@@ -47,7 +47,7 @@ const Search = () => {
   }, [router.query]);
 
   /* Handle submit queries */
-  const onSubmit = async (params: EverythingApiRequest) => {
+  const updateUrlQueries = (params: EverythingApiRequest) => {
     router.push(
       {
         pathname: router.pathname,
@@ -56,6 +56,10 @@ const Search = () => {
       undefined,
       { shallow: true }
     );
+  };
+
+  const onSubmit = (params: EverythingApiRequest) => {
+    updateUrlQueries(params);
   };
 
   /* UI */
@@ -77,7 +81,8 @@ const Search = () => {
 
       {searchTerm && <Heading>Result for "{searchTerm}"</Heading>}
       {articles && renderArticles(articles)}
-      {error && <p>{error}</p>}
+
+      {error && <p>{error.message}</p>}
     </MainLayout>
   );
 };
