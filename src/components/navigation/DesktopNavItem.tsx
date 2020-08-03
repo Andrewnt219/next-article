@@ -19,7 +19,7 @@ const Container = styled.li<ContainerProps>`
   a {
     padding: 0.5rem;
     cursor: pointer;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
 `;
 

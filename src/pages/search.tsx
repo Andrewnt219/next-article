@@ -97,6 +97,7 @@ const FilterContainer = styled.div<FilterContainerProps>`
 type HeadingProps = {};
 const Heading = styled.h1<HeadingProps>`
   margin-bottom: 2rem;
+  text-align: center;
 `;
 
 export default Search;

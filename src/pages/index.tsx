@@ -92,6 +92,7 @@ const Home = ({
         </AnimatePresence>
       </FilterContainer>
 
+      <Heading>Headlines</Heading>
       {typeof data === "string" ? <p>{data}</p> : renderArticles(data.articles)}
     </MainLayout>
   );
@@ -144,6 +145,13 @@ const CustomFilterBoard = styled(FilterBoard)<CustomFilterBoardProps>`
   top: 4.5rem;
   background: #fff;
   z-index: ${(p) => p.theme.zIndex.modal};
+`;
+
+type HeadingProps = {};
+const Heading = styled.h1<HeadingProps>`
+  margin-bottom: 2rem;
+  text-align: center;
+  font-size: 4rem;
 `;
 
 export default Home;
