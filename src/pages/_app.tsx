@@ -6,7 +6,6 @@ import {
   ThemeProvider as MuiProvider,
 } from "@material-ui/core/styles";
 import { defaultTheme } from "../theme/default.theme";
-import { wrapper } from "../app/store";
 import Router from "next/router";
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
@@ -43,4 +42,4 @@ function App({ Component, pageProps }: AppProps) {
   );
 }
 
-export default wrapper.withRedux(App);
+export default App;
