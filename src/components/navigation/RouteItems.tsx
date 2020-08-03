@@ -47,10 +47,6 @@ export const allRoutes: Route[] = [
     href: "/search",
     text: "Search",
   },
-  {
-    href: "/about",
-    text: "About",
-  },
 ];
 
 export { RouteItems };
