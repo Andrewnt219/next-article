@@ -24,7 +24,7 @@ function Footer({ height }: Props): ReactElement {
         </Text>
 
         <Text>
-          Powered by{" "}
+          API by{" "}
           <a
             style={{ color: "#fff", textDecoration: "underline" }}
             target="_blank"
@@ -33,6 +33,16 @@ function Footer({ height }: Props): ReactElement {
           >
             NewsApi
           </a>
+          . Icons by{" "}
+          <a
+            style={{ color: "#fff", textDecoration: "underline" }}
+            target="_blank"
+            rel="noreferrer noopener"
+            href="https://www.freepik.com/"
+          >
+            Freepik
+          </a>
+          .
         </Text>
       </SubContainer>
       <SocialMedias />
