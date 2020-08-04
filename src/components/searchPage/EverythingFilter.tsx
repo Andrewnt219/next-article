@@ -213,7 +213,7 @@ const Form = styled.form<FormProps>`
   }
 
   & > :last-child {
-    margin-top: 2rem;
+    margin-top: 0rem;
   }
 `;
 
