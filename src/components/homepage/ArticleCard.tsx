@@ -86,7 +86,7 @@ const Container = styled.article<ContainerProps>`
 `;
 
 type TitleProps = {};
-const Title = styled.h5<TitleProps>`
+const Title = styled.h2<TitleProps>`
   font-size: larger;
   line-height: 2rem;
   margin-top: 1rem;

@@ -1,6 +1,6 @@
 import { TextField } from "@components/ui/form/TextField";
 import React, { ReactElement, useState } from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { useForm } from "react-hook-form";
 import { EverythingApiRequest } from "@src/@types/newsapi";
 import _ from "lodash";
