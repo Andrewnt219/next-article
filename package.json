@@ -26,7 +26,7 @@
     "imagemin-mozjpeg": "^9.0.0",
     "imagemin-svgo": "^8.0.0",
     "js-yaml": "^3.14.0",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.21",
     "next": "9.4.4",
     "next-fonts": "^1.4.0",
     "next-images": "^1.4.0",
